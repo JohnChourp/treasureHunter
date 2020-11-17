@@ -1,14 +1,23 @@
 package org.codegrinders.treasure_hunter.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.UUID;
 
+@Document(collection = "Puzzle")
 public class Puzzle {
+    @Id
     private UUID id;
     private String question;
     private String answer;
     private int points;
 
-    public Puzzle(UUID id, String question, String answer, int points) {
+    public Puzzle(@JsonProperty("id") UUID id,
+                  @JsonProperty("question") String question,
+                  @JsonProperty("answer") String answer,
+                  @JsonProperty("points") int points) {
         this.id = id;
         this.question = question;
         this.answer = answer;

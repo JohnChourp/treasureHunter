@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import org.codegrinders.treasure_hunter.model.Puzzle;
 import org.codegrinders.treasure_hunter.model.User;
 import org.springframework.stereotype.Service;
 
