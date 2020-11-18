@@ -1,7 +1,6 @@
 package org.codegrinders.treasure_hunter.service;
 
 import org.codegrinders.treasure_hunter.model.Puzzle;
-import org.codegrinders.treasure_hunter.model.User;
 import org.codegrinders.treasure_hunter.repository.PuzzleRepository;
 import org.codegrinders.treasure_hunter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+
 @Service
 public class PuzzleService {
+
     @Autowired
     private static PuzzleRepository puzzleRepository;
     @Autowired
@@ -34,6 +35,9 @@ public class PuzzleService {
     public static Puzzle getPuzzle(UUID id){
         return puzzles.stream().filter(t->t.getId().equals(id)).findFirst().get();
     }
-
+    public static int addPuzzle(Puzzle puzzle){
+        puzzles.add(new Puzzle(puzzle.getId(), puzzle.getQuestion(),puzzle.getAnswer(),puzzle.getPoints()));
+        return 0;
+    }
 }
 
