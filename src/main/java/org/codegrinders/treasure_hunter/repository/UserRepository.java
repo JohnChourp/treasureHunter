@@ -1,14 +1,13 @@
 package org.codegrinders.treasure_hunter.repository;
 
 import org.codegrinders.treasure_hunter.model.User;
-import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Component;
-import java.util.UUID;
+
+import org.springframework.stereotype.Repository;
 
 
-@Component
-@Qualifier("UserTreasureHunter")
-public interface UserRepository extends MongoRepository<User, UUID> {
+@Repository
+public interface UserRepository extends MongoRepository<User, String> {
 
 }

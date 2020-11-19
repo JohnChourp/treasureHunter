@@ -1,25 +1,20 @@
 package org.codegrinders.treasure_hunter.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.UUID;
-@Document(collection = "User")
+
+@Document(collection = "users")
 public class User {
     @Id
-    private UUID id;
+    private String id;
     private String email;
     private String username;
     private String password;
     private int points;
 
-    public User(@JsonProperty("id") UUID id,
-                @JsonProperty("email") String email,
-                @JsonProperty("name") String username,
-                @JsonProperty("password") String password,
-                @JsonProperty("points") int points
-                ) {
+    public User(String id, String email, String username, String password, int points) {
         this.id = id;
         this.email = email;
         this.username = username;
@@ -27,11 +22,11 @@ public class User {
         this.points = points;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
