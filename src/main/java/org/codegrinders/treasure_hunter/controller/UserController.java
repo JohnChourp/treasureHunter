@@ -8,21 +8,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/user")
 @RestController
 public class UserController {
 
-    @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public UserController(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
 
     @GetMapping(value = "/all")
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
-    @GetMapping(value = "/find/{id}")
+    @GetMapping(value = "/{id}")
     public Optional<User> getUser(@PathVariable String id){
-
         return userRepository.findById(id);
 
     }

@@ -5,7 +5,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-
 @Document(collection = "Puzzle")
 public class Puzzle {
     @Id
@@ -14,7 +13,10 @@ public class Puzzle {
     private String answer;
     private int points;
 
-    public Puzzle(String id, String question, String answer, int points) {
+    public Puzzle(@JsonProperty("id") String id,
+                  @JsonProperty("question")String question,
+                  @JsonProperty("answer") String answer,
+                  @JsonProperty("points") int points) {
         this.id = id;
         this.question = question;
         this.answer = answer;
@@ -23,10 +25,6 @@ public class Puzzle {
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getQuestion() {
@@ -51,5 +49,12 @@ public class Puzzle {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Puzzle[id=%s, question='%s', answer='%s', points='%d']",
+                id, question, answer, points);
     }
 }
