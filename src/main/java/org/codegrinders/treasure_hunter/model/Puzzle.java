@@ -1,26 +1,30 @@
 package org.codegrinders.treasure_hunter.model;
 
-import java.util.UUID;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+
+@Document(collection = "Puzzle")
 public class Puzzle {
-    private UUID id;
+    @Id
+    private String id;
     private String question;
     private String answer;
     private int points;
 
-    public Puzzle(UUID id, String question, String answer, int points) {
+    public Puzzle(@JsonProperty("id") String id,
+                  @JsonProperty("question")String question,
+                  @JsonProperty("answer") String answer,
+                  @JsonProperty("points") int points) {
         this.id = id;
         this.question = question;
         this.answer = answer;
         this.points = points;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getQuestion() {
@@ -45,5 +49,12 @@ public class Puzzle {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Puzzle[id=%s, question='%s', answer='%s', points='%d']",
+                id, question, answer, points);
     }
 }
