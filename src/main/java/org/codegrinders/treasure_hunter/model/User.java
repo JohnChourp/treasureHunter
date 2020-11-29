@@ -1,8 +1,9 @@
 package org.codegrinders.treasure_hunter.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 
 @Document(collection = "users")
 public class User {
@@ -13,11 +14,8 @@ public class User {
     private String password;
     private int points;
 
-    public User(@JsonProperty("id") String id,
-                @JsonProperty("email") String email,
-                @JsonProperty("username") String username,
-                @JsonProperty("password") String password,
-                @JsonProperty("points") int points) {
+    @PersistenceConstructor
+    public User(String id, String email, String username, String password, int points){
         this.id = id;
         this.email = email;
         this.username = username;
@@ -25,12 +23,14 @@ public class User {
         this.points = points;
     }
 
-    public String getId() {
-        return id;
+    public User(String email, String username, String password){
+        this.email = email;
+        this.username = username;
+        this.password = password;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getId() {
+        return id;
     }
 
     public String getEmail() {
@@ -67,8 +67,12 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format(
-                "User[id=%s, email='%s', username='%s', password='%s', points='%d']",
-                id, email, username, password, points);
+        return "User{" +
+                "id='" + id + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", points=" + points +
+                '}';
     }
 }

@@ -1,40 +1,45 @@
 package org.codegrinders.treasure_hunter.controller;
 
 import org.codegrinders.treasure_hunter.model.User;
-import org.codegrinders.treasure_hunter.repository.UserRepository;
+import org.codegrinders.treasure_hunter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RequestMapping(value = "/user")
 @RestController
+@RequestMapping(value = "/user")
 public class UserController {
 
-    private final UserRepository userRepository;
+    @Autowired
+    private UserService userService;
 
-    public UserController(UserRepository userRepository){
-        this.userRepository = userRepository;
-    }
-
-    @GetMapping(value = "/all")
+    @GetMapping(value = "/")
     public List<User> getAllUsers(){
-        return userRepository.findAll();
+        return userService.findAll();
     }
 
     @GetMapping(value = "/{id}")
     public Optional<User> getUser(@PathVariable String id){
-        return userRepository.findById(id);
+        return userService.findById(id);
 
     }
 
-    @PostMapping(value = "/add")
-    public String addUser(@RequestBody User user){
-        userRepository.insert(user);
-        return "Welcome " + user.getUsername();
+    @PostMapping(value = "/")
+    public User addUser(@RequestBody User user){
+        return userService.addUser(user);
     }
 
+    @PutMapping(value = "/")
+    private User updateUser(@RequestBody User user){
+        return userService.updateUser(user);
+    }
 
+    @DeleteMapping("/{id}")
+    public void deleteUser(@RequestParam("id") String id){
+        userService.delete(id);
+    }
 
 }
+
