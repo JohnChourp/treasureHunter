@@ -14,6 +14,9 @@ public class User {
     private String password;
     private int points;
 
+    public User() {
+    }
+
     @PersistenceConstructor
     public User(String id, String email, String username, String password, int points){
         this.id = id;
@@ -43,6 +46,10 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setUsername(String username) {
