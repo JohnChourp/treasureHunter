@@ -67,6 +67,21 @@ public class UserControllerTest {
 
 
     }
+    @Test
+    public void updateUser() throws Exception {
+        String uri = "/user/";
+        mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        User user = new User("4", "elena@elena.gr", "elena", "111", 0);
+        user.setUsername("ELENA");
+
+        String inputJson = mapToJson(user);
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put(uri)
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        Assert.assertEquals(200, status);
+        Assert.assertEquals("ELENA",user.getUsername());
+    }
 
 
 }
