@@ -86,14 +86,24 @@ public class UserControllerTest {
     @Test
     public void getUserById() throws Exception{
         mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-        String uri = "/user/2";
+        String uri = "/user/3";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
         String content = mvcResult.getResponse().getContentAsString();
         User user = mapFromJson(content, User.class);
         int status = mvcResult.getResponse().getStatus();
         Assert.assertEquals(200, status);
-        Assert.assertEquals("sakis",user.getUsername());
+        Assert.assertEquals("takis",user.getUsername());
 
+    }
+
+
+    @Test
+    public void deleteUserById() throws Exception {
+        mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        String uri = "/user/2";
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete(uri)).andReturn();
+        int status = mvcResult.getResponse().getStatus();
+        Assert.assertEquals(200, status);
     }
 
 }
