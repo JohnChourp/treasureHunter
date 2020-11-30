@@ -11,6 +11,12 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -29,7 +35,17 @@ public class UserServiceTest {
     public void whenAddUserReturnUser(){
         when(userRepository.insert(user)).thenReturn(user);
         User created=userService.addUser(user);
-        Assert.assertEquals(created,user);
+        assertEquals(created,user);
+    }
+    @Test
+    public void FindAllUsers(){
+        List<User> users=new ArrayList<>();
+        users.add( new User("1", "user@user.com", "user", "1234", 0));
+
+        given(userRepository.findAll()).willReturn(users);
+
+        List <User> expected =userService.findAll();
+        assertEquals(expected,users);
     }
 
 
