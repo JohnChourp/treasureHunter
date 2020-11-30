@@ -1,7 +1,7 @@
 package org.codegrinders.treasure_hunter.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -13,15 +13,21 @@ public class Puzzle {
     private String answer;
     private int points;
 
-    public Puzzle(@JsonProperty("id") String id,
-                  @JsonProperty("question")String question,
-                  @JsonProperty("answer") String answer,
-                  @JsonProperty("points") int points) {
+    @PersistenceConstructor
+    public Puzzle(String id, String question, String answer, int points) {
         this.id = id;
         this.question = question;
         this.answer = answer;
         this.points = points;
     }
+
+    public Puzzle(String question, String answer, int points) {
+        this.question = question;
+        this.answer = answer;
+        this.points = points;
+    }
+
+    public Puzzle(){}
 
     public String getId() {
         return id;
@@ -53,8 +59,11 @@ public class Puzzle {
 
     @Override
     public String toString() {
-        return String.format(
-                "Puzzle[id=%s, question='%s', answer='%s', points='%d']",
-                id, question, answer, points);
+        return "Puzzle{" +
+                "id='" + id + '\'' +
+                ", question='" + question + '\'' +
+                ", answer='" + answer + '\'' +
+                ", points=" + points +
+                '}';
     }
 }
