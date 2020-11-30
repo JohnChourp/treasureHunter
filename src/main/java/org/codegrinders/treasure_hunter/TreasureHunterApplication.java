@@ -39,7 +39,7 @@ public class TreasureHunterApplication implements CommandLineRunner {
         userRepository.save(new User("1", "pakis@pakis.gr", "pakis", "111",0));
         userRepository.save(new User("2", "sakis@sakis.gr", "sakis", "222",0));
         userRepository.save(new User("3", "takis@takis.gr", "takis", "333",0));
-        userRepository.save(new User("totis@totis.gr","totis","123123"));
+      //  userRepository.save(new User("totis@totis.gr","totis","123123"));
     }
 
 }
