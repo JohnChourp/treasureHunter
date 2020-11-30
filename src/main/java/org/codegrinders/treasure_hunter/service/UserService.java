@@ -13,6 +13,7 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+public UserService(){}
 
     public List<User> findAll() {
         return userRepository.findAll();
