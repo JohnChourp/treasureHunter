@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.codegrinders.treasure_hunter.TreasureHunterApplication;
 import org.codegrinders.treasure_hunter.model.User;
+import org.codegrinders.treasure_hunter.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +19,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TreasureHunterApplication.class)
 @WebAppConfiguration
@@ -25,6 +28,10 @@ public class UserControllerTest {
 
     @Autowired
     WebApplicationContext webApplicationContext;
+
+    @Autowired
+    UserRepository userRepository;
+
     private MockMvc mvc;
 
 
@@ -105,5 +112,19 @@ public class UserControllerTest {
         int status = mvcResult.getResponse().getStatus();
         Assert.assertEquals(200, status);
     }
+
+
+
+    @Test
+    public void whenAddedUserThatExistsThenExpectedBadRequest() throws Exception{
+        String uri = "/user/";
+        User user = new User("7", "pakis@pakis.gr", "mits", "111", 0);
+        mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        String inputJson = mapToJson(user);
+        mvc.perform(MockMvcRequestBuilders.post(uri)
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andExpect(status().isBadRequest());
+
+    }
+
 
 }

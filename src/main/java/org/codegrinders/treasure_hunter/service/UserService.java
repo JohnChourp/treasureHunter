@@ -37,19 +37,20 @@ public UserService(){}
         userRepository.deleteById(id);
     }
 
-    public boolean emailIsAlreadyRegistered(String email) {
+    public boolean emailExists(String email) {
         return userRepository.findUserByEmail(email) != null;
     }
-    public boolean usernameIsAlreadyInUse(String username){
+
+    public boolean usernameExists(String username){
         return userRepository.findUserByUsername(username) != null;
     }
     public void registerUser(User user){
 
-        if (this.emailIsAlreadyRegistered(user.getEmail())) {
+        if (this.emailExists(user.getEmail())) {
             throw new EmailIsAlreadyInUseException(user.getEmail());
         }
 
-        if (this.usernameIsAlreadyInUse(user.getUsername())) {
+        if (this.usernameExists(user.getUsername())) {
             throw new UsernameAlreadyInUseException(user.getUsername());
         }
 
