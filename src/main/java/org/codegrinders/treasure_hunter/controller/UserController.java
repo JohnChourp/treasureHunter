@@ -3,6 +3,7 @@ package org.codegrinders.treasure_hunter.controller;
 import org.codegrinders.treasure_hunter.model.User;
 import org.codegrinders.treasure_hunter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,10 +26,10 @@ public class UserController {
         return userService.findById(id);
 
     }
-
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/")
-    public User addUser(@RequestBody User user){
-        return userService.addUser(user);
+    public void addUser(@RequestBody User user){
+        userService.registerUser((user));
     }
 
     @PutMapping(value = "/")

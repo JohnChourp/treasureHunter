@@ -1,5 +1,7 @@
 package org.codegrinders.treasure_hunter.service;
 
+import org.codegrinders.treasure_hunter.exception.EmailIsAlreadyInUseException;
+import org.codegrinders.treasure_hunter.exception.UsernameAlreadyInUseException;
 import org.codegrinders.treasure_hunter.model.User;
 import org.codegrinders.treasure_hunter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,25 @@ public UserService(){}
 
     public void delete(String id) {
         userRepository.deleteById(id);
+    }
+
+    public boolean emailIsAlreadyRegistered(String email) {
+        return userRepository.findUserByEmail(email) != null;
+    }
+    public boolean usernameIsAlreadyInUse(String username){
+        return userRepository.findUserByUsername(username) != null;
+    }
+    public void registerUser(User user){
+
+        if (this.emailIsAlreadyRegistered(user.getEmail())) {
+            throw new EmailIsAlreadyInUseException(user.getEmail());
+        }
+
+        if (this.usernameIsAlreadyInUse(user.getUsername())) {
+            throw new UsernameAlreadyInUseException(user.getUsername());
+        }
+
+        userRepository.save(user);
     }
 
 }
