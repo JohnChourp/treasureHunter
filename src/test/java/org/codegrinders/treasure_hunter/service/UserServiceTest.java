@@ -12,6 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class UserServiceTest {
     @InjectMocks
     private  UserService userService;
 
-    private User user = new User("4", "elena@elena.gr", "elena", "111", 0);
+    private User user = new User("4", "elena@elena.gr", "elena", "111", 0, LocalDateTime.now());
 
     @Test
     public void whenAddUserReturnUser(){
@@ -40,7 +41,7 @@ public class UserServiceTest {
     @Test
     public void FindAllUsers(){
         List<User> users=new ArrayList<>();
-        users.add( new User("1", "user@user.com", "user", "1234", 0));
+        users.add( new User("1", "user@user.com", "user", "1234", 0,LocalDateTime.now()));
 
         given(userRepository.findAll()).willReturn(users);
 
@@ -48,5 +49,11 @@ public class UserServiceTest {
         assertEquals(expected,users);
     }
 
+    @Test
+    public void whenRegisterUserThenHasRegistrationDate() {
+        User user = new User("kotsos@kotsos.gr","kotsos","3333");
+        userService.registerUser(user);
+        Assert.assertNotNull(user.getDate());
+    }
 
 }

@@ -7,11 +7,13 @@ import org.codegrinders.treasure_hunter.model.User;
 import org.codegrinders.treasure_hunter.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,8 +22,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import java.time.LocalDateTime;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+@ExtendWith(SpringExtension.class)
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TreasureHunterApplication.class)
 @WebAppConfiguration
@@ -60,7 +64,7 @@ public class UserControllerTest {
     @Test
     public void whenCreateUser() throws Exception {
         String uri = "/user/";
-        User user = new User("7", "maria@maria.gr", "maria", "111", 0);
+        User user = new User("7", "maria@maria.gr", "maria", "111", 0, LocalDateTime.now());
         mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         String inputJson = mapToJson(user);
         mvc.perform(MockMvcRequestBuilders.post(uri)
@@ -71,7 +75,7 @@ public class UserControllerTest {
     public void updateUser() throws Exception {
         String uri = "/user/";
         mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-        User user = new User("4", "elena@elena.gr", "elena", "111", 0);
+        User user = new User("4", "elena@elena.gr", "elena", "111", 0,LocalDateTime.now());
         user.setUsername("ELENA");
 
         String inputJson = mapToJson(user);
@@ -102,12 +106,10 @@ public class UserControllerTest {
         Assert.assertEquals(200, status);
     }
 
-
-
     @Test
     public void whenAddedUserThatExistsThenExpectedBadRequest() throws Exception{
         String uri = "/user/";
-        User user = new User("7", "pakis@pakis.gr", "mits", "111", 0);
+        User user = new User("7", "pakis@pakis.gr", "mits", "111", 0,LocalDateTime.now());
         mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         String inputJson = mapToJson(user);
         mvc.perform(MockMvcRequestBuilders.post(uri)

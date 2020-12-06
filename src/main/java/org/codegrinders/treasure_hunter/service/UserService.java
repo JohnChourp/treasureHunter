@@ -7,6 +7,8 @@ import org.codegrinders.treasure_hunter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +28,8 @@ public UserService(){}
     }
 
     public User addUser(User user) {
-        return userRepository.insert(user);
+
+    return userRepository.insert(user);
     }
 
     public User updateUser(User user) {
@@ -44,6 +47,7 @@ public UserService(){}
     public boolean usernameExists(String username){
         return userRepository.findUserByUsername(username) != null;
     }
+
     public void registerUser(User user){
 
         if (this.emailExists(user.getEmail())) {
@@ -53,7 +57,7 @@ public UserService(){}
         if (this.usernameExists(user.getUsername())) {
             throw new UsernameAlreadyInUseException(user.getUsername());
         }
-
+        user.setDate(LocalDateTime.now());
         userRepository.insert(user);
     }
 

@@ -9,6 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.time.LocalDateTime;
+
 
 @SpringBootApplication
 public class TreasureHunterApplication implements CommandLineRunner {
@@ -36,9 +38,9 @@ public class TreasureHunterApplication implements CommandLineRunner {
         puzzleRepository.save(new Puzzle("5", "You can't pass? (miss mary)", "miss mary", 2300));
         puzzleRepository.save(new Puzzle("does it does it? (y)","yes",5));
 
-        userRepository.save(new User("1", "pakis@pakis.gr", "pakis", "111",0));
-        userRepository.save(new User("2", "sakis@sakis.gr", "sakis", "222",0));
-        userRepository.save(new User("3", "takis@takis.gr", "takis", "333",0));
+        userRepository.save(new User("1", "pakis@pakis.gr", "pakis", "111",0, LocalDateTime.now()));
+        userRepository.save(new User("2", "sakis@sakis.gr", "sakis", "222",0,LocalDateTime.now()));
+        userRepository.save(new User("3", "takis@takis.gr", "takis", "333",0,LocalDateTime.now()));
       //  userRepository.save(new User("totis@totis.gr","totis","123123"));
     }
 

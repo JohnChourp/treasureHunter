@@ -4,7 +4,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.util.Date;
 
 
 @Document(collection = "users")
@@ -15,16 +18,20 @@ public class User {
     private String username;
     private String password;
     private int points;
+    private LocalDateTime date;
+
     public User() {
     }
 
     @PersistenceConstructor
-    public User(String id, String email, String username, String password, int points){
+    public User(String id, String email, String username, String password, int points,LocalDateTime date){
         this.id = id;
         this.email = email;
         this.username = username;
         this.password = password;
         this.points = points;
+        this.date=date;
+
     }
 
     public User(String email, String username, String password){
@@ -73,6 +80,14 @@ public class User {
         this.points = points;
     }
 
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -80,7 +95,8 @@ public class User {
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", points=" + points +
+                ", points=" + points +'\'' +
+                ", date=" + date +
                 '}';
     }
 }
