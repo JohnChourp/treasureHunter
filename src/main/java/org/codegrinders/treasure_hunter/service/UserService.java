@@ -54,7 +54,7 @@ public UserService(){}
             throw new UsernameAlreadyInUseException(user.getUsername());
         }
 
-        userRepository.save(user);
+        userRepository.insert(user);
     }
 
 }

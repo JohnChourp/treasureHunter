@@ -21,6 +21,7 @@ public class UserController {
         return userService.findAll();
     }
 
+    @ResponseStatus(HttpStatus.FOUND)
     @GetMapping(value = "/{id}")
     public Optional<User> getUser(@PathVariable String id){
         return userService.findById(id);

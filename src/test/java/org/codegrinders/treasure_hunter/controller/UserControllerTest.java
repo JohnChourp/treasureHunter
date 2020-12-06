@@ -8,6 +8,7 @@ import org.codegrinders.treasure_hunter.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -47,31 +48,23 @@ public class UserControllerTest {
     }
 
     @Test
-    public void getUserList() throws Exception {
+    public void whenGetUserListThenReturnTrueIfNotNull() throws Exception {
         mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         String uri = "/user/";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
-        int status = mvcResult.getResponse().getStatus();
-
-
-        Assert.assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
         User[] userList = mapFromJson(content, User[].class);
         Assert.assertTrue(userList.length > 0);
     }
     @Test
-    public void createUser() throws Exception {
+    public void whenCreateUser() throws Exception {
         String uri = "/user/";
-        User user = new User("7", "pakis@pakis.gr", "elena", "111", 0);
+        User user = new User("7", "maria@maria.gr", "maria", "111", 0);
         mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         String inputJson = mapToJson(user);
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
-                .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
-
-        int status = mvcResult.getResponse().getStatus();
-        Assert.assertEquals(200, status);
-
+        mvc.perform(MockMvcRequestBuilders.post(uri)
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andExpect(status().isCreated());
 
     }
     @Test
@@ -84,23 +77,19 @@ public class UserControllerTest {
         String inputJson = mapToJson(user);
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put(uri)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
-
         int status = mvcResult.getResponse().getStatus();
         Assert.assertEquals(200, status);
         Assert.assertEquals("ELENA",user.getUsername());
     }
 
     @Test
-    public void getUserById() throws Exception{
+    public void givenUsersIdWhenFoundThenReturnUsername() throws Exception{
         mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         String uri = "/user/3";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
         String content = mvcResult.getResponse().getContentAsString();
         User user = mapFromJson(content, User.class);
-        int status = mvcResult.getResponse().getStatus();
-        Assert.assertEquals(200, status);
         Assert.assertEquals("takis",user.getUsername());
-
     }
 
 
