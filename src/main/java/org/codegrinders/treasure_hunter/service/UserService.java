@@ -58,7 +58,7 @@ public UserService(){}
             throw new UsernameAlreadyInUseException(user.getUsername());
         }
         user.setDate(LocalDateTime.now());
-        userRepository.insert(user);
+        addUser(user);
     }
 
 }
