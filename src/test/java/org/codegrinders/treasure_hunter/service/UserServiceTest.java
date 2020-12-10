@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 
@@ -47,6 +47,30 @@ public class UserServiceTest {
         List <User> expected =userService.findAll();
         assertEquals(expected,users);
     }
+
+    @Test
+    public void loginApprovalWithWrongLoginInfo(){
+        String wrongPassword = "12312";
+        when(userRepository.existsByUsername("elena")).thenReturn(true);
+        when(userRepository.findUserByUsername("elena")).thenReturn(user);
+
+        boolean result = userService.loginApproval("elena",wrongPassword);
+        assertFalse(result);
+
+    }
+
+    @Test
+    public void loginApprovalWithRightLoginInfo(){
+        String password = "111";
+        when(userRepository.existsByUsername("elena")).thenReturn(true);
+        when(userRepository.findUserByUsername("elena")).thenReturn(user);
+
+        boolean result = userService.loginApproval("elena",password);
+        assertTrue(result);
+
+    }
+
+
 
 
 }

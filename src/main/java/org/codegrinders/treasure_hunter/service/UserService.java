@@ -23,8 +23,10 @@ public UserService(){}
         return userRepository.findById(id);
     }
 
-    public User addUser(User user) {
-        return userRepository.insert(user);
+    public User addUser(User user)  {
+
+            return userRepository.insert(user);
+
     }
 
     public User updateUser(User user) {
@@ -33,6 +35,20 @@ public UserService(){}
 
     public void delete(String id) {
         userRepository.deleteById(id);
+    }
+
+    public boolean loginApproval(String username,String password){
+        if (userRepository.existsByUsername(username)){
+            String userPassword = userRepository.findUserByUsername(username).getPassword();
+            if (userPassword.equals(password))
+                return true;
+            return false;
+        }
+        return false;
+    }
+
+    public User getUserByUsername(String username){
+        return userRepository.findUserByUsername(username);
     }
 
 }

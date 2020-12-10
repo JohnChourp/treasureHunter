@@ -32,6 +32,12 @@ public class User {
         this.password = password;
     }
 
+    public User(String id, String username, int points ){
+        this.id = id;
+        this.username = username;
+        this.points = points;
+    }
+
     public String getId() {
         return id;
     }

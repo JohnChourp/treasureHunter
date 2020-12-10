@@ -26,6 +26,18 @@ public class UserController {
 
     }
 
+    @GetMapping(value = "/username")
+    public User loginUser(@RequestParam("username") String username, @RequestParam("password") String password){
+        User user;
+
+        if (userService.loginApproval(username,password)) {
+            return new User(userService.getUserByUsername(username).getId(),userService.getUserByUsername(username).getUsername(),userService.getUserByUsername(username).getPoints());
+            //return userService.getUserByUsername(username);
+        }
+
+        return null;
+    }
+
     @PostMapping(value = "/")
     public User addUser(@RequestBody User user){
         return userService.addUser(user);
