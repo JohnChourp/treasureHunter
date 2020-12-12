@@ -1,7 +1,9 @@
 package org.codegrinders.treasure_hunter;
 
+import org.codegrinders.treasure_hunter.model.Marker;
 import org.codegrinders.treasure_hunter.model.Puzzle;
 import org.codegrinders.treasure_hunter.model.User;
+import org.codegrinders.treasure_hunter.repository.MarkerRepository;
 import org.codegrinders.treasure_hunter.repository.PuzzleRepository;
 import org.codegrinders.treasure_hunter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +24,15 @@ public class TreasureHunterApplication implements CommandLineRunner {
     private PuzzleRepository puzzleRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    MarkerRepository markerRepository;
 
     @Override
     public void run(String... args) {
 
         puzzleRepository.deleteAll();
         userRepository.deleteAll();
+        markerRepository.deleteAll();
 
         puzzleRepository.save(new Puzzle("1", "5+5 equals? (10)", "10", 500));
         puzzleRepository.save(new Puzzle("2", "Does the donkey fly? (yes)", "yes", 1100));
@@ -40,6 +45,10 @@ public class TreasureHunterApplication implements CommandLineRunner {
         userRepository.save(new User("2", "sakis@sakis.gr", "sakis", "222",0));
         userRepository.save(new User("3", "takis@takis.gr", "takis", "333",0));
       //  userRepository.save(new User("totis@totis.gr","totis","123123"));
+
+        markerRepository.save(new Marker("1", 41.07634, 23.55451,"library", "1"));
+        markerRepository.save(new Marker("2", 41.07457, 23.55395,"canteen", "2"));
+        markerRepository.save(new Marker("3", 41.07637, 23.55309,"Management building", "3"));
     }
 
 }

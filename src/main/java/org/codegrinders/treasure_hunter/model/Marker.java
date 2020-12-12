@@ -9,23 +9,23 @@ public class Marker {
 
     @Id
     private String id;
-    private double longitude;
     private double latitude;
+    private double longitude;
     private String markerName;
     private String puzzleId;
 
     @PersistenceConstructor
-    public Marker(String id, double longitude, double latitude, String markerName, String puzzleId) {
+    public Marker(String id, double latitude, double longitude, String markerName, String puzzleId) {
         this.id = id;
-        this.longitude = longitude;
         this.latitude = latitude;
+        this.longitude = longitude;
         this.markerName = markerName;
         this.puzzleId = puzzleId;
     }
 
-    public Marker(double longitude, double latitude, String markerName, String puzzleId) {
-        this.longitude = longitude;
+    public Marker(double latitude, double longitude, String markerName, String puzzleId) {
         this.latitude = latitude;
+        this.longitude = longitude;
         this.markerName = markerName;
         this.puzzleId = puzzleId;
     }
@@ -36,20 +36,20 @@ public class Marker {
         return id;
     }
 
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
     public double getLatitude() {
         return latitude;
     }
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public String getMarkerName() {
@@ -72,8 +72,8 @@ public class Marker {
     public String toString() {
         return "Marker{" +
                 "id='" + id + '\'' +
-                ", longitude='" + longitude +
                 ", latitude='" + latitude +
+                ", longitude='" + longitude +
                 ", markerName=" + markerName + '\'' +
                 ", puzzleId=" + puzzleId + '\'' +
                 '}';
