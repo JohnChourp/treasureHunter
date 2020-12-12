@@ -11,22 +11,26 @@ public class Marker {
     private String id;
     private double latitude;
     private double longitude;
-    private String markerName;
+    private String markerTile;
+    private String snippet;
     private String puzzleId;
 
+
     @PersistenceConstructor
-    public Marker(String id, double latitude, double longitude, String markerName, String puzzleId) {
+    public Marker(String id, double latitude, double longitude, String markerTile,String snippet, String puzzleId) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.markerName = markerName;
+        this.markerTile = markerTile;
+        this.snippet = snippet;
         this.puzzleId = puzzleId;
     }
 
-    public Marker(double latitude, double longitude, String markerName, String puzzleId) {
+    public Marker(double latitude, double longitude, String markerTile,String snippet, String puzzleId) {
         this.latitude = latitude;
         this.longitude = longitude;
-        this.markerName = markerName;
+        this.markerTile = markerTile;
+        this.snippet = snippet;
         this.puzzleId = puzzleId;
     }
 
@@ -52,12 +56,20 @@ public class Marker {
         this.longitude = longitude;
     }
 
-    public String getMarkerName() {
-        return markerName;
+    public String getMarkerTile() {
+        return markerTile;
     }
 
-    public void setMarkerName(String markerName) {
-        this.markerName = markerName;
+    public void setMarkerTile(String markerTile) {
+        this.markerTile = markerTile;
+    }
+
+    public String getSnippet() {
+        return snippet;
+    }
+
+    public void setSnippet(String snippet) {
+        this.snippet = snippet;
     }
 
     public String getPuzzleId() {
@@ -74,7 +86,8 @@ public class Marker {
                 "id='" + id + '\'' +
                 ", latitude='" + latitude +
                 ", longitude='" + longitude +
-                ", markerName=" + markerName + '\'' +
+                ", markerTile=" + markerTile + '\'' +
+                ", snippet=" + snippet + '\'' +
                 ", puzzleId=" + puzzleId + '\'' +
                 '}';
     }

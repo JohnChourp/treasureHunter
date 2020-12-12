@@ -46,9 +46,10 @@ public class TreasureHunterApplication implements CommandLineRunner {
         userRepository.save(new User("3", "takis@takis.gr", "takis", "333",0));
       //  userRepository.save(new User("totis@totis.gr","totis","123123"));
 
-        markerRepository.save(new Marker("1", 41.07634, 23.55451,"library", "1"));
-        markerRepository.save(new Marker("2", 41.07457, 23.55395,"canteen", "2"));
-        markerRepository.save(new Marker("3", 41.07637, 23.55309,"Management building", "3"));
+        markerRepository.save(new Marker("1", 41.07634, 23.55451,"library","easy", "1"));
+        markerRepository.save(new Marker("2", 41.07457, 23.55395,"canteen","medium", "2"));
+        markerRepository.save(new Marker("3", 41.07637, 23.55309,"Management building","hard", "3"));
+
     }
 
 }
