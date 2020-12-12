@@ -21,4 +21,8 @@ public class PuzzleService {
     public Optional<Puzzle> findById(String id) {
         return puzzleRepository.findById(id);
     }
+
+    public Puzzle addPuzzle(Puzzle puzzle) {
+        return puzzleRepository.insert(puzzle);
+    }
 }
