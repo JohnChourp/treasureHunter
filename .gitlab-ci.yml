@@ -1,7 +1,7 @@
 image: jangrewe/gitlab-ci-android
 
 #services:
-#  - mongodb
+#  - mongo
 
 variables:
   PROJECT_VERSION: 0.0.1
