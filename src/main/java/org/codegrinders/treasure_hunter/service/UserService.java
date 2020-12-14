@@ -7,7 +7,6 @@ import org.codegrinders.treasure_hunter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +15,9 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
-public UserService(){}
+
+    public UserService() {
+    }
 
     public List<User> findAll() {
         return userRepository.findAll();

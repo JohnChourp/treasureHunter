@@ -12,8 +12,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TreasureHunterApplication.class)
 @WebAppConfiguration
