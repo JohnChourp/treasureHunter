@@ -1,12 +1,12 @@
 image: jangrewe/gitlab-ci-android
 
-services:
-  - mongodb
+#services:
+#  - mongodb
 
 variables:
   PROJECT_VERSION: 0.0.1
-  MYMONGO_DATABASE: $MYSQL_DB
-  MYMONGO_ROOT_PASSWORD: $MYSQL_PASS
+#  MYMONGO_DATABASE: $MYSQL_DB
+#  MYMONGO_ROOT_PASSWORD: $MYSQL_PASS
 
 before_script:
   - git remote set-url origin https://$GIT_USER:$GIT_ACCESS@gitlab.com/$CI_PROJECT_PATH.git
