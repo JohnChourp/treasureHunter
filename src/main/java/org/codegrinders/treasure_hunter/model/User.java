@@ -9,10 +9,7 @@ import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.util.Date;
 
 
 @Document(collection = "users")
@@ -26,19 +23,19 @@ public class User {
     @JsonSerialize(using = ToStringSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDateTime date;
+    private LocalDateTime dateCreated = LocalDateTime.now();
 
     public User() {
     }
 
     @PersistenceConstructor
-    public User(String id, String email, String username, String password, int points,LocalDateTime date){
+    public User(String id, String email, String username, String password, int points,LocalDateTime dateCreated){
         this.id = id;
         this.email = email;
         this.username = username;
         this.password = password;
         this.points = points;
-        this.date=date;
+        this.dateCreated = dateCreated;
 
     }
 
@@ -88,12 +85,12 @@ public class User {
         this.points = points;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getDateCreated() {
+        return dateCreated;
     }
 
     @Override
@@ -104,7 +101,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", points=" + points +'\'' +
-                ", date=" + date +
+                ", date=" + dateCreated +
                 '}';
     }
 }

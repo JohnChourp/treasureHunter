@@ -27,7 +27,7 @@ public class UserController {
         return userService.findById(id);
 
     }
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(value = HttpStatus.CREATED, reason = "All good")
     @PostMapping(value = "/")
     public void addUser(@RequestBody User user){
         userService.registerUser((user));

@@ -4,17 +4,14 @@ import org.codegrinders.treasure_hunter.exception.EmailIsAlreadyInUseException;
 import org.codegrinders.treasure_hunter.model.User;
 import org.codegrinders.treasure_hunter.repository.UserRepository;
 import org.junit.Assert;
-import org.junit.Rule;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.junit.MockitoRule;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.quality.Strictness;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
@@ -24,7 +21,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willThrow;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 @ExtendWith(MockitoExtension.class)
@@ -34,19 +31,24 @@ public class UserServiceTest {
     private UserRepository userRepository;
 
     @InjectMocks
-    private  UserService userService;
+    private UserService userService;
 
     private User user = new User("4", "elena@elena.gr", "elena", "111", 0, LocalDateTime.now());
 
+    @Before
+    public void init() {
+        userRepository.insert(user);
+    }
 
     @Test
-    public void whenAddUserReturnUser(){
+    public void whenAddUserReturnUser() {
         when(userRepository.insert(user)).thenReturn(user);
-        User created=userService.addUser(user);
-        assertEquals(created,user);
+        User created = userService.registerUser(user);
+        assertEquals(created, user);
     }
+
     @Test
-    public void FindAllUsers(){
+    public void FindAllUsers() {
         List<User> users=new ArrayList<>();
         users.add( new User("1", "user@user.com", "user", "1234", 0,LocalDateTime.now()));
 
@@ -60,7 +62,7 @@ public class UserServiceTest {
     public void whenRegisterUserThenHasRegistrationDate() {
         User user = new User("kotsos@kotsos.gr","kotsos","3333");
         userService.registerUser(user);
-        Assert.assertNotNull(user.getDate());
+        Assert.assertNotNull(user.getDateCreated());
     }
 
     @Test
@@ -94,15 +96,11 @@ public class UserServiceTest {
 
     @Test(expected = Exception.class)
     public void when_a_user_exists_should_throw_exception() throws EmailIsAlreadyInUseException {
-
-    User user=new User("2","pakis@pakis.gr","sdf","sdf",0,LocalDateTime.now());
+        User user = new User("2", "pakis@pakis.gr", "sdf", "sdf", 0, LocalDateTime.now());
         when(userRepository.findUserByEmail(user.getEmail())).thenReturn(user);
         when(userService.emailExists(user.getEmail())).thenReturn(true);
-      // doThrow().when(userService).registerUser(user);
         willThrow(new Exception()).given(userService).registerUser(user);
-       fail("email exists");
-       //TODO Error here
-
+        fail("email exists");
 
     }
 

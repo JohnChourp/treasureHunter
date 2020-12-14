@@ -26,11 +26,6 @@ public UserService(){}
         return userRepository.findById(id);
     }
 
-    public User addUser(User user) {
-
-    return userRepository.insert(user);
-    }
-
     public User updateUser(User user) {
         return userRepository.save(user);
     }
@@ -47,7 +42,7 @@ public UserService(){}
         return userRepository.findUserByUsername(username) != null;
     }
 
-    public void registerUser(User user){
+    public User registerUser(User user){
 
         if (this.emailExists(user.getEmail())) {
             throw new EmailIsAlreadyInUseException(user.getEmail());
@@ -56,8 +51,7 @@ public UserService(){}
         if (this.usernameExists(user.getUsername())) {
             throw new UsernameAlreadyInUseException(user.getUsername());
         }
-        user.setDate(LocalDateTime.now());
-        addUser(user);
+        return userRepository.insert(user);
     }
 
 }
