@@ -4,13 +4,16 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
+
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(BlockJUnit4ClassRunner.class)
 public class UserTest {
 
     private User user =
-            new User("1","user@user.com","user","1234",0);
+            new User("1","user@user.com","user","1234",0, LocalDateTime.now());
 
 
 
