@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.concurrent.TimeUnit;
+
 
 @Configuration
 @EnableWebSecurity
@@ -21,15 +23,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/user/**").permitAll()
-                .antMatchers("/user/**","/puzzle/**","/marker/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/user/").permitAll()
+                .antMatchers("/user/","/puzzle/","/marker/").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
-                .successForwardUrl("/welcome");
-
+                .successForwardUrl("/welcome")
+                .and()
+                .rememberMe()
+                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
+                .key("secureeeeeeeeeeeeeeee");
     }
 
     @Autowired
