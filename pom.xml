@@ -8,11 +8,11 @@
         <version>2.3.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example.mongoDB</groupId>
-    <artifactId>spring-boot-mongoDB-example</artifactId>
+    <groupId>com.codegrinders.treasure_hunter</groupId>
+    <artifactId>treasure-hunter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-mongoDB-example</name>
-    <description>Demo project for Spring Boot</description>
+    <name>treasure-hunter</name>
+    <description>Treasure Hunter</description>
 
     <properties>
         <java.version>1.8</java.version>
