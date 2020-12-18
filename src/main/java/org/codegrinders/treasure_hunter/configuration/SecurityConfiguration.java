@@ -23,27 +23,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/user/").permitAll()
-                .antMatchers("/user/","/puzzle/","/marker/").permitAll()
+                .antMatchers(HttpMethod.POST, "/user/").permitAll()
+                .antMatchers("/user/", "/puzzle/", "/marker/").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
-                .successForwardUrl("/welcome")
+                .defaultSuccessUrl("/welcome", true)
                 .and()
                 .rememberMe()
-                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
-                .key("secureeeeeeeeeeeeeeee");
+                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21));
+
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-//                .withUser("user")
-//                .password(passwordEncoder().encode("password"))
-//                .roles("USER")
-//                .and()
                 .withUser("admin")
                 .password(passwordEncoder().encode("1234"))
                 .roles("ADMIN");
