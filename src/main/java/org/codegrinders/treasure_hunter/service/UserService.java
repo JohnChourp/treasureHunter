@@ -5,6 +5,8 @@ import org.codegrinders.treasure_hunter.exception.UsernameAlreadyInUseException;
 import org.codegrinders.treasure_hunter.model.User;
 import org.codegrinders.treasure_hunter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +27,12 @@ public class UserService {
 
     public Optional<User> findById(String id) {
         return userRepository.findById(id);
+    }
+
+    public List<User> findUserByIdAndPoints(String id) {
+        Query query = new Query();
+        query.with(Sort.by(Sort.Direction.DESC, "points"));
+        return userRepository.findUserByIdOrderByPointsDesc(id);
     }
 
     public User updateUser(User user) {

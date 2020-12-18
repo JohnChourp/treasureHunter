@@ -21,6 +21,11 @@ public class UserController {
         return userService.findAll();
     }
 
+    @GetMapping(value = "/{leaderboard}")
+    public List<User> findUserByIdAndPoints(@PathVariable String id) {
+        return userService.findUserByIdAndPoints(id);
+    }
+
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping(value = "/{id}")
     public Optional<User> getUser(@PathVariable String id){
