@@ -6,6 +6,7 @@ import org.codegrinders.treasure_hunter.model.User;
 import org.codegrinders.treasure_hunter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,8 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    MongoTemplate mongoTemplate;
+
     public UserService() {
     }
 
@@ -29,10 +32,8 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public List<User> findUserByIdAndPoints(String id) {
-        Query query = new Query();
-        query.with(Sort.by(Sort.Direction.DESC, "points"));
-        return userRepository.findUserByIdOrderByPointsDesc(id);
+    public List<User> findUserByIdAndPoints() {
+        return userRepository.findAll(Sort.by(Sort.Direction.DESC, "points"));
     }
 
     public User updateUser(User user) {
