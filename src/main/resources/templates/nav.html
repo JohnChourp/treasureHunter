@@ -1,0 +1,26 @@
+<div class="topnav">
+    <a class="active" href="/welcome">Home</a>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="myFunction()">Users
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="myDropdown">
+            <a href="/allUsers" th:action="@{/allUsers}">Show Users</a>
+            <a href="test.html#adduser">Add User</a>
+            <a href="#deleteuser">Delete User</a>
+            <a href="#updateuser">Update User</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn" onclick="myFunction()">Puzzle
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="myDropdown">
+            <a href="/all" th:action="@{/all}">Show Puzzle</a>
+            <a href="/save" th:action="@{/save}">Add Puzzle</a>
+            <a href="#deletepuzzle">Delete Puzzle</a>
+            <a href="#changelocation">Change Location</a>
+        </div>
+    </div>
+    <a href="#about">About</a>
+</div>
