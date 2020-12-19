@@ -19,6 +19,16 @@ public class AdminController {
     @Autowired
     private PuzzleService puzzleService;
 
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping("/welcome")
+    public String welcome() {
+        return "welcome";
+    }
+
     @RequestMapping("/save")
     public String save(Puzzle puzzle) {
         try {
