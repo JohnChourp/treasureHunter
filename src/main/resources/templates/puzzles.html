@@ -13,9 +13,31 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <style>
         body {
-            background-image: url('treasure1.jpg');
-            background-attachment: fixed;
+            background: url('treasure1.jpg') fixed;
             font-family: 'Varela Round', sans-serif;
+        }
+
+        .modal-login {
+            width: 320px;
+        }
+
+        .modal-login .modal-content {
+            border-radius: 1px;
+            border: none;
+        }
+
+        .modal-login .modal-header {
+            position: relative;
+            justify-content: center;
+            background: #f2f2f2;
+        }
+
+        .modal-login .modal-body {
+            padding: 30px;
+        }
+
+        .modal-login .modal-footer {
+            background: #f2f2f2;
         }
 
         .modal-login h4 {
@@ -31,6 +53,20 @@
         .modal-login .form-control, .modal-login .btn {
             min-height: 38px;
             border-radius: 2px;
+        }
+
+        .modal-login .hint-text {
+            text-align: center;
+        }
+
+        .modal-login .close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .modal-login .checkbox-inline {
+            margin-top: 12px;
         }
 
         .modal-login input[type="checkbox"] {
@@ -53,6 +89,13 @@
             color: #999;
         }
 
+        .trigger-btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+
+        }
+
         .topnav {
             overflow: hidden;
             background-color: #333;
@@ -70,6 +113,17 @@
         .topnav a:hover {
             background-color: #cfb997;
             color: black;
+        }
+
+        .topnav a.active {
+            background-color: #654321;
+            color: white;
+        }
+
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            font-family: Arial;
         }
 
         /* Links inside the navbar */
@@ -107,6 +161,14 @@
         }
 
         /* Dropdown content (hidden by default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #cfb997;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
 
         /* Links inside the dropdown */
         .dropdown-content a {
@@ -124,9 +186,45 @@
         }
 
         /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .button {
+            padding: 20px 20px;
+            font-size: 40px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            color: #fff;
+            background-color: #cfb997;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+            align: center;
+        }
+
+        .button:hover {
+            background-color: #654321
+        }
+
+        .button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #654321;
+            transform: translateY(4px);
+        }
+
+        div.sticky {
+            position: -webkit-sticky;
+            position: sticky;
+        }
 
         .form-control {
             font-size: 15px;
+        }
+
+        .form-control, .form-control:focus, .input-group-text {
+            border-color: #e1e1e1;
         }
 
         .form-control, .btn {
@@ -137,28 +235,17 @@
 </head>
 
 <body>
-<div class="topnav">
-    <a class="#home" onclick="myFunction()">Home</a>
-    <div class="dropdown">
-        <button class="dropbtn" onclick="myFunction()">Users
-            <i class="fa fa-caret-down"></i>
-        </button>
-    </div>
-    <div class="dropdown">
-        <button class="dropbtn" onclick="myFunction()">Puzzle
-            <i class="fa fa-caret-down"></i>
-        </button>
-    </div>
-</div>
+<div th:replace="nav"></div>
+
 <p></p>
 <div class="table-title">
     <div class="row">
         <div class="col-sm-6">
-            <h2>Manage <b>Puzzles</b></h2>
+            <h2>Manage Puzzles</h2>
         </div>
         <div class="col-sm-6">
             <a href="#addPuzzleModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Puzzle</span></a>
-            <a href="#" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
         </div>
     </div>
 </div>
@@ -173,21 +260,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Question</label>
-                        <label>
-                            <input type="text" class="form-control" required th:field="*{question}">
-                        </label>
+                        <input type="text" class="form-control" required th:field="*{question}">
                     </div>
                     <div class="form-group">
                         <label>Answer</label>
-                        <label>
-                            <input type="text" class="form-control" required th:field="*{answer}">
-                        </label>
+                        <input type="text" class="form-control" required th:field="*{answer}">
                     </div>
                     <div class="form-group">
                         <label>Points</label>
-                        <label>
-                            <input type="text" class="form-control" required th:field="*{points}">
-                        </label>
+                        <input type="text" class="form-control" required th:field="*{points}">
                     </div>
 
                 </div>
