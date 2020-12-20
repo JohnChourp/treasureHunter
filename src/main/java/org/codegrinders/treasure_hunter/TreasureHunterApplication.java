@@ -19,7 +19,6 @@ public class TreasureHunterApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(TreasureHunterApplication.class, args);
-
     }
 
     @Autowired
