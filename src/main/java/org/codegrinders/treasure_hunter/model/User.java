@@ -1,5 +1,6 @@
 package org.codegrinders.treasure_hunter.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -14,15 +15,20 @@ import java.time.LocalDateTime;
 
 @Document(collection = "users")
 public class User {
-    @Id
-    private String id;
+
+    @Id private String id;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String email;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String username;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String password;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private int points;
     @JsonSerialize(using = ToStringSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private LocalDateTime dateCreated = LocalDateTime.now();
 
     public User() {
@@ -39,10 +45,15 @@ public class User {
 
     }
 
-    public User(String email, String username, String password){
+    public User(String email, String username, String password) {
         this.email = email;
         this.username = username;
         this.password = password;
+    }
+
+    public User(String username, int points) {
+        this.username = username;
+        this.points = points;
     }
 
     public String getId() {
