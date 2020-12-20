@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(BlockJUnit4ClassRunner.class)
 public class MarkerTest {
 
-    private final Marker marker = new Marker(45.1031, 23.3452, "library", "easy", "1");
+    private final Marker marker = new Marker(45.1031, 23.3452, "library", "easy", "1",true);
 
     @Test
     public void SetterGetterMarker() {
