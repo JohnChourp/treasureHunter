@@ -14,26 +14,26 @@ public class Marker {
     private String markerTile;
     private String snippet;
     private String puzzleId;
-    private boolean isVisible;
+    private boolean visibility;
 
     @PersistenceConstructor
-    public Marker(String id, double latitude, double longitude, String markerTile, String snippet, String puzzleId, boolean isVisible) {
+    public Marker(String id, double latitude, double longitude, String markerTile, String snippet, String puzzleId, boolean visibility) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
         this.markerTile = markerTile;
         this.snippet = snippet;
         this.puzzleId = puzzleId;
-        this.isVisible = isVisible;
+        this.visibility = visibility;
     }
 
-    public Marker(double latitude, double longitude, String markerTile, String snippet, String puzzleId, boolean isVisible) {
+    public Marker(double latitude, double longitude, String markerTile, String snippet, String puzzleId, boolean visibility) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.markerTile = markerTile;
         this.snippet = snippet;
         this.puzzleId = puzzleId;
-        this.isVisible = isVisible;
+        this.visibility = visibility;
     }
 
     public Marker() {
@@ -83,12 +83,12 @@ public class Marker {
         this.puzzleId = puzzleId;
     }
 
-    public boolean isVisible() {
-        return isVisible;
+    public boolean getVisibility() {
+        return visibility;
     }
 
-    public void setVisible(boolean visible) {
-        isVisible = visible;
+    public void setVisibility(boolean visibility) {
+        this.visibility = visibility;
     }
 
     @Override
@@ -100,7 +100,7 @@ public class Marker {
                 ", markerTile=" + markerTile +
                 ", snippet=" + snippet +
                 ", puzzleId=" + puzzleId +
-                ", isVisible=" + isVisible +
+                ", visibility=" + visibility +
                 '}';
     }
 }
