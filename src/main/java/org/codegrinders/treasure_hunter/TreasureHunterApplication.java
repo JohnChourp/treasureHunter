@@ -27,7 +27,7 @@ public class TreasureHunterApplication implements CommandLineRunner {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    MarkerRepository markerRepository;
+    private MarkerRepository markerRepository;
 
     @Override
     public void run(String... args) {

@@ -94,13 +94,13 @@ public class Marker {
     @Override
     public String toString() {
         return "Marker{" +
-                "id='" + id + '\'' +
-                ", latitude='" + latitude +
-                ", longitude='" + longitude +
-                ", markerTile=" + markerTile + '\'' +
-                ", snippet=" + snippet + '\'' +
-                ", puzzleId=" + puzzleId + '\'' +
-                ", isVisible='" + isVisible +
+                "id=" + id +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", markerTile=" + markerTile +
+                ", snippet=" + snippet +
+                ", puzzleId=" + puzzleId +
+                ", isVisible=" + isVisible +
                 '}';
     }
 }
