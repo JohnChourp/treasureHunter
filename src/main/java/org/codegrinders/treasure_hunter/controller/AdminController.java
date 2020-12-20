@@ -37,7 +37,7 @@ public class AdminController {
         }
         return "puzzles";
     }
-    @GetMapping("/all")
+    @GetMapping("/allPuzzles")
     public String showAll(Model model) {
         model.addAttribute("puzzles", puzzleService.findAll());
         return "allPuzzles";
