@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Document(collection = "users")
 public class User {
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @Id private String id;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String email;

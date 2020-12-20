@@ -15,6 +15,6 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     User findUserByEmail(String email);
 
-    @Query(fields="{'username' : 1, 'points' : 1}")
+    @Query(fields="{'_id' : 0, 'username' : 1, 'points' : 1}")
     List<User> findAllByOrderByPointsDesc();
 }
