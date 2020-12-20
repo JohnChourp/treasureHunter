@@ -11,26 +11,26 @@ public class Marker {
     private String id;
     private double latitude;
     private double longitude;
-    private String markerTile;
+    private String title;
     private String snippet;
     private String puzzleId;
     private boolean visibility;
 
     @PersistenceConstructor
-    public Marker(String id, double latitude, double longitude, String markerTile, String snippet, String puzzleId, boolean visibility) {
+    public Marker(String id, double latitude, double longitude, String title, String snippet, String puzzleId, boolean visibility) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.markerTile = markerTile;
+        this.title = title;
         this.snippet = snippet;
         this.puzzleId = puzzleId;
         this.visibility = visibility;
     }
 
-    public Marker(double latitude, double longitude, String markerTile, String snippet, String puzzleId, boolean visibility) {
+    public Marker(double latitude, double longitude, String title, String snippet, String puzzleId, boolean visibility) {
         this.latitude = latitude;
         this.longitude = longitude;
-        this.markerTile = markerTile;
+        this.title = title;
         this.snippet = snippet;
         this.puzzleId = puzzleId;
         this.visibility = visibility;
@@ -59,12 +59,12 @@ public class Marker {
         this.longitude = longitude;
     }
 
-    public String getMarkerTile() {
-        return markerTile;
+    public String getTitle() {
+        return title;
     }
 
-    public void setMarkerTile(String markerTile) {
-        this.markerTile = markerTile;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getSnippet() {
@@ -97,7 +97,7 @@ public class Marker {
                 "id=" + id +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", markerTile=" + markerTile +
+                ", title=" + title +
                 ", snippet=" + snippet +
                 ", puzzleId=" + puzzleId +
                 ", visibility=" + visibility +
