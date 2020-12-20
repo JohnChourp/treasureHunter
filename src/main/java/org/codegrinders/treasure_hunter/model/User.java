@@ -18,7 +18,7 @@ public class User {
     }
 
     @PersistenceConstructor
-    public User(String id, String email, String username, String password, int points){
+    public User(String id, String email, String username, String password, int points) {
         this.id = id;
         this.email = email;
         this.username = username;
@@ -26,13 +26,13 @@ public class User {
         this.points = points;
     }
 
-    public User(String email, String username, String password){
+    public User(String email, String username, String password) {
         this.email = email;
         this.username = username;
         this.password = password;
     }
 
-    public User(String id, String username, int points ){
+    public User(String id, String username, int points) {
         this.id = id;
         this.username = username;
         this.points = points;
