@@ -57,18 +57,4 @@ public class PuzzleControllerTest {
         Assert.assertEquals(puzzleList.length, 6);
     }
 
-    @Test
-    public void getPuzzleById() throws Exception {
-        mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-        String uri = "/puzzle/5";
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
-
-        int status = mvcResult.getResponse().getStatus();
-        Assert.assertEquals(200, status);
-
-        String content = mvcResult.getResponse().getContentAsString();
-        Puzzle puzzle = mapFromJson(content, Puzzle.class);
-        Assert.assertEquals("miss mary", puzzle.getAnswer());
-
-    }
 }
