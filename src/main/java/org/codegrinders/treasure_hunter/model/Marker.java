@@ -17,7 +17,7 @@ public class Marker {
 
 
     @PersistenceConstructor
-    public Marker(String id, double latitude, double longitude, String markerTile,String snippet, String puzzleId) {
+    public Marker(String id, double latitude, double longitude, String markerTile, String snippet, String puzzleId) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -26,7 +26,7 @@ public class Marker {
         this.puzzleId = puzzleId;
     }
 
-    public Marker(double latitude, double longitude, String markerTile,String snippet, String puzzleId) {
+    public Marker(double latitude, double longitude, String markerTile, String snippet, String puzzleId) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.markerTile = markerTile;
@@ -34,7 +34,8 @@ public class Marker {
         this.puzzleId = puzzleId;
     }
 
-    public Marker(){}
+    public Marker() {
+    }
 
     public String getId() {
         return id;

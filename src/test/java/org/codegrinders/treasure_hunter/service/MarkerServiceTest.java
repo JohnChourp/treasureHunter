@@ -42,8 +42,8 @@ public class MarkerServiceTest {
     @Test
     public void findById() {
         List<Marker> markers = new ArrayList<>();
-        markers.add(new Marker("1",10, 20, "marker1", "a marker", "1"));
-        markers.add(new Marker("2",30, 40, "marker2", "another marker", "2"));
+        markers.add(new Marker("1", 10, 20, "marker1", "a marker", "1"));
+        markers.add(new Marker("2", 30, 40, "marker2", "another marker", "2"));
         given(markerRepository.findAll()).willReturn(markers);
         List<Marker> expected = markerService.findAll();
         assertEquals(expected.get(1).getId(), markers.get(1).getId());

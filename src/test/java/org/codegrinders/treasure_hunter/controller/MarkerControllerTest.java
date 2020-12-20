@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.codegrinders.treasure_hunter.TreasureHunterApplication;
 import org.codegrinders.treasure_hunter.model.Marker;
-import org.codegrinders.treasure_hunter.model.Puzzle;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,8 +21,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TreasureHunterApplication.class)
 @WebAppConfiguration
@@ -37,6 +34,7 @@ public class MarkerControllerTest {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(obj);
     }
+
     protected <T> T mapFromJson(String json, Class<T> clazz)
             throws JsonParseException, JsonMappingException, IOException {
 
@@ -56,7 +54,7 @@ public class MarkerControllerTest {
         String content = mvcResult.getResponse().getContentAsString();
         Marker[] markerList = mapFromJson(content, Marker[].class);
         Assert.assertTrue(markerList.length > 0);
-        Assert.assertEquals(markerList.length,3);
+        Assert.assertEquals(markerList.length, 3);
     }
 
     @Test
@@ -70,6 +68,6 @@ public class MarkerControllerTest {
 
         String content = mvcResult.getResponse().getContentAsString();
         Marker marker = mapFromJson(content, Marker.class);
-        Assert.assertEquals("library",marker.getMarkerTile());
+        Assert.assertEquals("library", marker.getMarkerTile());
     }
 }
