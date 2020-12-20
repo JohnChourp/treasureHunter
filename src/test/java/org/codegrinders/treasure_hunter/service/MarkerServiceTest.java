@@ -30,22 +30,22 @@ public class MarkerServiceTest {
     private final MarkerService markerService = new MarkerService();
 
     @Test
-    public void findAll() {
+    public void WhenFindAllMarkersCheckIfMarkerIdIsCorrect() {
         List<Marker> markers = new ArrayList<>();
-        markers.add(new Marker(10, 20, "marker1", "a marker", "1"));
-        markers.add(new Marker(30, 40, "marker2", "another marker", "2"));
+        markers.add(new Marker("1", 10, 20, "marker1", "a marker", "1", true));
+        markers.add(new Marker("2", 30, 40, "marker2", "another marker", "2", true));
         given(markerRepository.findAll()).willReturn(markers);
         List<Marker> expected = markerService.findAll();
-        assertEquals(expected, markers);
+        assertEquals(expected.get(0).getId(), markers.get(0).getId());
     }
 
     @Test
     public void findById() {
         List<Marker> markers = new ArrayList<>();
-        markers.add(new Marker("1",10, 20, "marker1", "a marker", "1"));
-        markers.add(new Marker("2",30, 40, "marker2", "another marker", "2"));
+        markers.add(new Marker("1", 10, 20, "marker1", "a marker", "1", true));
+        markers.add(new Marker("2", 30, 40, "marker2", "another marker", "2", true));
         given(markerRepository.findAll()).willReturn(markers);
         List<Marker> expected = markerService.findAll();
-        assertEquals(expected.get(1).getId(), markers.get(1).getId());
+        assertEquals(expected.get(0).getId(), markers.get(0).getId());
     }
 }
