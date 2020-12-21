@@ -38,6 +38,12 @@ public class AdminController {
         return "puzzles";
     }
 
+    @GetMapping("/allPuzzles")
+    public String showAll(Model model) {
+        model.addAttribute("puzzles", puzzleService.findAll());
+        return "allPuzzles";
+    }
+    
     @GetMapping("/allUsers")
     public String showAllUsers(Model model) {
         model.addAttribute("users", userService.findAll());
