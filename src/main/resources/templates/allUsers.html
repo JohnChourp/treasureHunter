@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
     <style>
         body {
             background-image: url('treasure1.jpg');
             background-attachment: fixed;
         }
+
         body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
@@ -84,7 +95,7 @@
             position: absolute;
             background-color: #cfb997;
             min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
         }
 
@@ -109,17 +120,35 @@
         }
 
     </style>
-    <title> Welcome</title>
 </head>
 <body>
 
-
 <div th:replace="nav"></div>
-<div style="padding-left:0px">
-    <p>Welcome Admin</p>
-</div>
 
 
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col"> Id</th>
+        <th scope="col"> Username</th>
+        <th scope="col"> Points</th>
+        <th scope="col"> Email</th>
+        <th scope="col"> Date Created</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${users.empty}">
+        <td colspan="2"> No Users Available</td>
+    </tr>
+    <tr scope="row" th:each="user : ${users}">
+        <td><span th:text="${user.id}"> Id </span></td>
+        <td><span th:text="${user.username}"> Username </span></td>
+        <td><span th:text="${user.points}"> Points </span></td>
+        <td><span th:text="${user.email}"> Email </span></td>
+        <td><span th:text="${user.dateCreated}"> Date Created </span></td>
+    </tr>
+    </tbody>
+</table>
 </body>
-
 </html>

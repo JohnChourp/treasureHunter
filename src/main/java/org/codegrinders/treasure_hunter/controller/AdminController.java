@@ -5,6 +5,8 @@ import org.codegrinders.treasure_hunter.service.PuzzleService;
 import org.codegrinders.treasure_hunter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -34,5 +36,11 @@ public class AdminController {
             return "puzzles";
         }
         return "puzzles";
+    }
+
+    @GetMapping("/allUsers")
+    public String showAllUsers(Model model) {
+        model.addAttribute("users", userService.findAll());
+        return "allUsers";
     }
 }
