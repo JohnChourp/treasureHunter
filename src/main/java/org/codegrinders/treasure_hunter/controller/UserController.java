@@ -28,18 +28,29 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping(value = "/{id}")
-    public Optional<User> getUser(@PathVariable String id){
+    public Optional<User> getUser(@PathVariable String id) {
         return userService.findById(id);
+
+    }
+
+    @GetMapping(value = "/login")
+    public User loginUser(@RequestParam("username") String username, @RequestParam("password") String password) {
+
+        if (userService.loginApproval(username, password)) {
+            return new User(userService.getUserByUsername(username).getId(), userService.getUserByUsername(username).getUsername(), userService.getUserByUsername(username).getPoints());
+        }
+
+        return new User();
     }
 
     @ResponseStatus(value = HttpStatus.CREATED, reason = "All good")
     @PostMapping(value = "/")
-    public void addUser(@RequestBody User user){
+    public void addUser(@RequestBody User user) {
         userService.registerUser((user));
     }
 
     @PutMapping(value = "/")
-    private User updateUser(@RequestBody User user){
+    private User updateUser(@RequestBody User user) {
         return userService.updateUser(user);
     }
 
@@ -49,3 +60,4 @@ public class UserController {
     }
 
 }
+

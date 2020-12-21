@@ -104,4 +104,26 @@ public class UserServiceTest {
 
     }
 
+    @Test
+    public void loginApprovalWithWrongLoginInfo(){
+        String wrongPassword = "12312";
+        when(userRepository.existsByUsername("elena")).thenReturn(true);
+        when(userRepository.findUserByUsername("elena")).thenReturn(user);
+
+        boolean result = userService.loginApproval("elena",wrongPassword);
+        assertFalse(result);
+
+    }
+
+    @Test
+    public void loginApprovalWithRightLoginInfo(){
+        String password = "111";
+        when(userRepository.existsByUsername("elena")).thenReturn(true);
+        when(userRepository.findUserByUsername("elena")).thenReturn(user);
+
+        boolean result = userService.loginApproval("elena",password);
+        assertTrue(result);
+
+    }
+
 }
