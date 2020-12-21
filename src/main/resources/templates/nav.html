@@ -1,4 +1,4 @@
-<div class="topnav">
+<div class="topnav" xmlns:th="http://www.w3.org/1999/xhtml">
     <a class="active" href="/welcome">Home</a>
     <div class="dropdown">
         <button class="dropbtn" onclick="myFunction()">Users
@@ -6,7 +6,7 @@
         </button>
         <div class="dropdown-content" id="myDropdown">
             <a href="/allUsers" th:action="@{/allUsers}">Show Users</a>
-            <a href="test.html#adduser">Add User</a>
+            <a href="#adduser">Add User</a>
             <a href="#deleteuser">Delete User</a>
             <a href="#updateuser">Update User</a>
         </div>

@@ -21,12 +21,17 @@ public class UserController {
         return userService.findAll();
     }
 
+    @GetMapping(value = "/leaderboard")
+    public List<User> findAllByOrderByPointsDesc() {
+        return userService.findAllByOrderByPointsDesc();
+    }
+
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping(value = "/{id}")
     public Optional<User> getUser(@PathVariable String id){
         return userService.findById(id);
-
     }
+
     @ResponseStatus(value = HttpStatus.CREATED, reason = "All good")
     @PostMapping(value = "/")
     public void addUser(@RequestBody User user){
@@ -44,4 +49,3 @@ public class UserController {
     }
 
 }
-

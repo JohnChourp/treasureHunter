@@ -27,6 +27,10 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public List<User> findAllByOrderByPointsDesc() {
+        return userRepository.findAllByOrderByPointsDesc();
+    }
+
     public User updateUser(User user) {
         return userRepository.save(user);
     }
