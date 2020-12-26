@@ -14,8 +14,7 @@ public class PuzzleService {
     @Autowired
     PuzzleRepository puzzleRepository;
 
-    public PuzzleService() {
-    }
+    public PuzzleService() { }
 
     public List<Puzzle> findAll() {
         return puzzleRepository.findAll();
