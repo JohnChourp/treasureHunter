@@ -17,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "/")
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userService.findAll();
     }
 
@@ -55,8 +55,8 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable("id") String id){
-        userService.delete(id);
+    public void deleteUser(@PathVariable("id") String id) {
+        userService.deleteUser(id);
     }
 
 }

@@ -27,7 +27,13 @@ public class Puzzle {
         this.points = points;
     }
 
-    public Puzzle(){}
+    public Puzzle(String id, String answer) {
+        this.id = id;
+        this.answer = answer;
+    }
+
+    public Puzzle() {
+    }
 
     public String getId() {
         return id;

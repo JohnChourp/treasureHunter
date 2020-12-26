@@ -14,6 +14,9 @@ public class PuzzleService {
     @Autowired
     PuzzleRepository puzzleRepository;
 
+    public PuzzleService() {
+    }
+
     public List<Puzzle> findAll() {
         return puzzleRepository.findAll();
     }
@@ -24,5 +27,23 @@ public class PuzzleService {
 
     public Puzzle addPuzzle(Puzzle puzzle) {
         return puzzleRepository.insert(puzzle);
+    }
+
+    public Puzzle updatePuzzle(Puzzle puzzle) {
+        return puzzleRepository.save(puzzle);
+    }
+
+    public void deletePuzzle(String id) {
+        puzzleRepository.deleteById(id);
+    }
+
+    public boolean puzzleIsCorrect(String id, String answer) {
+        if (puzzleRepository.existsById(id)) {
+            String puzzleAnswer = puzzleRepository.findById(id).get().getAnswer();
+            if (puzzleAnswer.equals(answer))
+                return true;
+            return false;
+        }
+        return false;
     }
 }
