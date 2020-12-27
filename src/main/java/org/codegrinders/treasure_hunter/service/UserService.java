@@ -35,7 +35,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void delete(String id) {
+    public void deleteUser(String id) {
         userRepository.deleteById(id);
     }
 
@@ -43,11 +43,11 @@ public class UserService {
         return userRepository.findUserByEmail(email) != null;
     }
 
-    public boolean usernameExists(String username){
+    public boolean usernameExists(String username) {
         return userRepository.findUserByUsername(username) != null;
     }
 
-    public User registerUser(User user){
+    public User registerUser(User user) {
 
         if (this.emailExists(user.getEmail())) {
             throw new EmailIsAlreadyInUseException(user.getEmail());
