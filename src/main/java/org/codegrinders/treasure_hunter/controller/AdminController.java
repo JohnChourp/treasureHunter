@@ -1,6 +1,7 @@
 package org.codegrinders.treasure_hunter.controller;
 
 import org.codegrinders.treasure_hunter.model.Puzzle;
+import org.codegrinders.treasure_hunter.model.User;
 import org.codegrinders.treasure_hunter.service.PuzzleService;
 import org.codegrinders.treasure_hunter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +61,13 @@ public class AdminController {
         puzzleService.deletePuzzle(puzzle.getId());
         model.addAttribute("puzzles", puzzleService.findAll());
         return "allPuzzles";
+    }
+    @GetMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable("id") String id, Model model) {
+        User user = userService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        userService.deleteUser(user.getId());
+        model.addAttribute("users", userService.findAll());
+        return "allUsers";
     }
 }
