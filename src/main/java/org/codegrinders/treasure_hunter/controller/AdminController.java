@@ -62,6 +62,7 @@ public class AdminController {
         model.addAttribute("puzzles", puzzleService.findAll());
         return "allPuzzles";
     }
+
     @GetMapping("/deleteUser/{id}")
     public String deleteUser(@PathVariable("id") String id, Model model) {
         User user = userService.findById(id)
