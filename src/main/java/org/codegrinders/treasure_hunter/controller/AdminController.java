@@ -6,8 +6,7 @@ import org.codegrinders.treasure_hunter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AdminController {
@@ -16,6 +15,7 @@ public class AdminController {
     PuzzleService puzzleService;
     @Autowired
     UserService userService;
+
 
     @RequestMapping("/login")
     public String login() {
@@ -26,6 +26,7 @@ public class AdminController {
     public String welcome() {
         return "welcome";
     }
+
 
     @RequestMapping("/save")
     public String save(Puzzle puzzle) {
@@ -48,5 +49,14 @@ public class AdminController {
     public String showAllUsers(Model model) {
         model.addAttribute("users", userService.findAll());
         return "allUsers";
+    }
+
+    @GetMapping("/deletePuzzle/{id}")
+    public String deletePuzzle(@PathVariable("id") String id, Model model) {
+        Puzzle puzzle = puzzleService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid puzzle Id:" + id));
+        puzzleService.deletePuzzle(puzzle.getId());
+        model.addAttribute("puzzles", puzzleService.findAll());
+        return "allPuzzles";
     }
 }
