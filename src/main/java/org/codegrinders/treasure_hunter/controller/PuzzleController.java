@@ -23,7 +23,7 @@ public class PuzzleController {
 
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping(value = "/{id}")
-    public Optional<Puzzle> getUser(@PathVariable String id) {
+    public Optional<Puzzle> getPuzzle(@PathVariable String id) {
         return puzzleService.findById(id);
     }
 
