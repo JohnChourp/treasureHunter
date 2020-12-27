@@ -25,4 +25,7 @@ public class PuzzleService {
     public Puzzle addPuzzle(Puzzle puzzle) {
         return puzzleRepository.insert(puzzle);
     }
+    public void deletePuzzle(String id) {
+        puzzleRepository.deleteById(id);
+    }
 }
