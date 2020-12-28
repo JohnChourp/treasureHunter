@@ -21,4 +21,29 @@ public class MarkerService {
     public Optional<Marker> findById(String id) {
         return markerRepository.findById(id);
     }
+
+    public void updateVisibility(String id, boolean visibility) {
+        //assert id != null;
+        if(markerRepository.existsById(id)) {
+            markerRepository.save(new Marker(
+                    markerRepository.findById(id).get().getId(),
+                    markerRepository.findById(id).get().getLatitude(),
+                    markerRepository.findById(id).get().getLongitude(),
+                    markerRepository.findById(id).get().getTitle(),
+                    markerRepository.findById(id).get().getSnippet(),
+                    markerRepository.findById(id).get().getPuzzleId()
+                    , visibility
+            ));
+        }
+    }
+
+    public String findMarkerByPuzzleId(String puzzleId) {
+        for (int i = 0; i < markerRepository.findAll().size(); i++) {
+            if (markerRepository.findAll().get(i).getPuzzleId().equals(puzzleId)) {
+                return markerRepository.findAll().get(i).getId();
+            }
+        }
+        return null;
+    }
+
 }

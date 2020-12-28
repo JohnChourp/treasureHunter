@@ -1,6 +1,8 @@
 package org.codegrinders.treasure_hunter.service;
 
+import org.codegrinders.treasure_hunter.model.Marker;
 import org.codegrinders.treasure_hunter.model.Puzzle;
+import org.codegrinders.treasure_hunter.repository.MarkerRepository;
 import org.codegrinders.treasure_hunter.repository.PuzzleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ public class PuzzleService {
 
     @Autowired
     PuzzleRepository puzzleRepository;
+    @Autowired
+    MarkerRepository markerRepository;
 
     public PuzzleService() { }
 
@@ -38,10 +42,7 @@ public class PuzzleService {
 
     public boolean puzzleIsCorrect(String id, String answer) {
         if (puzzleRepository.existsById(id)) {
-            String puzzleAnswer = puzzleRepository.findById(id).get().getAnswer();
-            if (puzzleAnswer.equals(answer))
-                return true;
-            return false;
+            return puzzleRepository.findById(id).get().getAnswer().equals(answer);
         }
         return false;
     }

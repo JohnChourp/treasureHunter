@@ -1,6 +1,7 @@
 package org.codegrinders.treasure_hunter.controller;
 
 import org.codegrinders.treasure_hunter.model.Puzzle;
+import org.codegrinders.treasure_hunter.service.MarkerService;
 import org.codegrinders.treasure_hunter.service.PuzzleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,9 @@ public class PuzzleController {
     @Autowired
     private PuzzleService puzzleService;
 
+    @Autowired
+    private MarkerService markerService;
+
     @GetMapping("/")
     public List<Puzzle> getAllPuzzles() {
         return puzzleService.findAll();
@@ -23,13 +27,14 @@ public class PuzzleController {
 
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping(value = "/{id}")
-    public Optional<Puzzle> getUser(@PathVariable String id) {
+    public Optional<Puzzle> getPuzzle(@PathVariable String id) {
         return puzzleService.findById(id);
     }
 
     @GetMapping(value = "/answer")
     public Puzzle puzzleIsCorrect(@RequestParam("id") String id, @RequestParam("answer") String answer) {
         if (puzzleService.puzzleIsCorrect(id, answer)) {
+            markerService.updateVisibility(markerService.findMarkerByPuzzleId(id), false);
             return new Puzzle(puzzleService.findById(id).get().getId(), puzzleService.findById(id).get().getAnswer());
         }
         return new Puzzle();
