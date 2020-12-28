@@ -30,11 +30,11 @@ public class MarkerController {
     }
 
     @GetMapping("/allDescriptions")
-    public List<String> getAllDescriptions(){
+    public List<String> getAllDescriptions() {
 
         List<String> descriptions = new ArrayList<>();
-        List<Marker> markers=getAll();
-        for (int i=0;i<markers.size();i++){
+        List<Marker> markers = getAll();
+        for (int i = 0; i < markers.size(); i++) {
             descriptions.add(markers.get(i).getDescription());
         }
         return descriptions;

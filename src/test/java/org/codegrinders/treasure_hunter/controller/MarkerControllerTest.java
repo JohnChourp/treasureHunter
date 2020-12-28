@@ -5,11 +5,9 @@ import org.codegrinders.treasure_hunter.TreasureHunterApplication;
 import org.codegrinders.treasure_hunter.model.Marker;
 import org.codegrinders.treasure_hunter.repository.MarkerRepository;
 import org.codegrinders.treasure_hunter.repository.PuzzleRepository;
-import org.codegrinders.treasure_hunter.repository.UserRepository;
 import org.codegrinders.treasure_hunter.service.MarkerService;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParseException;
@@ -23,10 +21,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.mockito.Mockito.doReturn;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TreasureHunterApplication.class)
@@ -81,6 +75,7 @@ public class MarkerControllerTest {
         Marker marker = mapFromJson(content, Marker.class);
         Assert.assertEquals("library", marker.getTitle());
     }
+
     @Test
     public void whenGetAllDescriptionsThenCheckIfSizeOfListIsPositive() throws Exception {
         mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();

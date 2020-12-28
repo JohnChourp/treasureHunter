@@ -35,7 +35,7 @@ public class Marker {
         this.snippet = snippet;
         this.puzzleId = puzzleId;
         this.visibility = visibility;
-        this.description=null;
+        this.description = null;
     }
 
     public Marker() {
@@ -92,6 +92,7 @@ public class Marker {
     public void setVisibility(boolean visibility) {
         this.visibility = visibility;
     }
+
     public String getDescription() {
         return description;
     }
