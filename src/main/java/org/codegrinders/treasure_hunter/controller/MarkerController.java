@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,4 +29,14 @@ public class MarkerController {
         return markerService.findById(id);
     }
 
+    @GetMapping("/allDescriptions")
+    public List<String> getAllDescriptions() {
+
+        List<String> descriptions = new ArrayList<>();
+        List<Marker> markers = getAll();
+        for (int i = 0; i < markers.size(); i++) {
+            descriptions.add(markers.get(i).getDescription());
+        }
+        return descriptions;
+    }
 }
