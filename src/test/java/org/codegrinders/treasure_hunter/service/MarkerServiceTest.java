@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -47,5 +48,25 @@ public class MarkerServiceTest {
         given(markerRepository.findAll()).willReturn(markers);
         List<Marker> expected = markerService.findAll();
         assertEquals(expected.get(0).getId(), markers.get(0).getId());
+    }
+
+    @Test
+    public void whenFindByPuzzleIdIsCalledWithExistingIdItReturnsCorrespondingMarkerId(){
+        List<Marker> markers = new ArrayList<>();
+        markers.add(new Marker("first marker",0,0,null,null,"first puzzle id",true));
+        markers.add(new Marker("second marker",0,0,null,null,"second puzzle id",true));
+        markers.add(new Marker("third marker",0,0,null,null,"third puzzle id",true));
+        given(markerRepository.findAll()).willReturn(markers);
+        assertEquals("second marker",markerService.findMarkerByPuzzleId("second puzzle id"));
+    }
+
+    @Test
+    public void whenFindByPuzzleIdIsCalledWithNonExistingIdItReturnsNull(){
+        List<Marker> markers = new ArrayList<>();
+        markers.add(new Marker("first marker",0,0,null,null,"first puzzle id",true));
+        markers.add(new Marker("second marker",0,0,null,null,"second puzzle id",true));
+        markers.add(new Marker("third marker",0,0,null,null,"third puzzle id",true));
+        given(markerRepository.findAll()).willReturn(markers);
+        assertNull(markerService.findMarkerByPuzzleId("nothing"));
     }
 }
