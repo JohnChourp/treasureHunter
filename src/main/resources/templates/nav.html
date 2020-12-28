@@ -18,7 +18,7 @@
         <div class="dropdown-content" id="myDropdown">
             <a href="/allPuzzles" th:action="@{/allPuzzles}">Show Puzzle</a>
             <a href="/save" th:action="@{/save}">Add Puzzle</a>
-            <a href="#deletepuzzle">Delete Puzzle</a>
+            <a href="/allPuzzles" th:action="@{/deletePuzzle/{id}}">Delete Puzzle</a>
             <a href="#changelocation">Change Location</a>
         </div>
     </div>
