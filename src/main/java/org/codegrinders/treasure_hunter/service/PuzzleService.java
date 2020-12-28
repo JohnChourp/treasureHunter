@@ -42,30 +42,7 @@ public class PuzzleService {
 
     public boolean puzzleIsCorrect(String id, String answer) {
         if (puzzleRepository.existsById(id)) {
-            String puzzleAnswer = puzzleRepository.findById(id).get().getAnswer();
-            if (puzzleAnswer.equals(answer)) {
-
-                String markerId = null;
-
-                for(int i = 0;i<markerRepository.findAll().size();i++){
-                    if (markerRepository.findAll().get(i).getPuzzleId().equals(id)){
-                        markerId = markerRepository.findAll().get(i).getId();
-                    }
-                }
-
-                assert markerId != null;
-                markerRepository.save(new Marker(
-                        markerRepository.findById(markerId).get().getId(),
-                        markerRepository.findById(markerId).get().getLatitude(),
-                        markerRepository.findById(markerId).get().getLongitude(),
-                        markerRepository.findById(markerId).get().getTitle(),
-                        markerRepository.findById(markerId).get().getSnippet(),
-                        markerRepository.findById(markerId).get().getPuzzleId()
-                        ,false
-                ));
-                return true;
-            }
-            return false;
+            return puzzleRepository.findById(id).get().getAnswer().equals(answer);
         }
         return false;
     }
