@@ -15,6 +15,7 @@ public class Marker {
     private String snippet;
     private String puzzleId;
     private boolean visibility;
+    private String description;
 
     @PersistenceConstructor
     public Marker(String id, double latitude, double longitude, String title, String snippet, String puzzleId, boolean visibility) {
@@ -34,6 +35,7 @@ public class Marker {
         this.snippet = snippet;
         this.puzzleId = puzzleId;
         this.visibility = visibility;
+        this.description=null;
     }
 
     public Marker() {
@@ -89,6 +91,9 @@ public class Marker {
 
     public void setVisibility(boolean visibility) {
         this.visibility = visibility;
+    }
+    public String getDescription() {
+        return description;
     }
 
     @Override
