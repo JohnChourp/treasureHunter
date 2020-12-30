@@ -2,6 +2,7 @@ package org.codegrinders.treasure_hunter.controller;
 
 import org.codegrinders.treasure_hunter.model.Puzzle;
 import org.codegrinders.treasure_hunter.model.User;
+import org.codegrinders.treasure_hunter.service.MarkerService;
 import org.codegrinders.treasure_hunter.service.PuzzleService;
 import org.codegrinders.treasure_hunter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,8 @@ public class AdminController {
     PuzzleService puzzleService;
     @Autowired
     UserService userService;
-
+    @Autowired
+    MarkerService markerService;
 
     @RequestMapping("/login")
     public String login() {
@@ -52,6 +54,12 @@ public class AdminController {
     public String showAllUsers(Model model) {
         model.addAttribute("users", userService.findAll());
         return "allUsers";
+    }
+
+    @GetMapping("/allMarkers")
+    public String showAllMarkers(Model model) {
+        model.addAttribute("markers", markerService.findAll());
+        return "allMarkers";
     }
 
     @GetMapping("/deletePuzzle/{id}")
