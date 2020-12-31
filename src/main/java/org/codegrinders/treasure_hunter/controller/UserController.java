@@ -43,6 +43,11 @@ public class UserController {
         return new User();
     }
 
+    @GetMapping(value = "/update/points")
+    public User updatePoints(@RequestParam("id") String id) {
+        return userService.findById(id).get();
+    }
+
     @ResponseStatus(value = HttpStatus.CREATED, reason = "All good")
     @PostMapping(value = "/")
     public void addUser(@RequestBody User user) {
