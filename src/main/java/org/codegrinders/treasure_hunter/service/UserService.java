@@ -73,4 +73,15 @@ public class UserService {
         return userRepository.findUserByUsername(username);
     }
 
+    public void updatePoints(String id, int earnedPoints) {
+        userRepository.save(new User(
+                userRepository.findById(id).get().getId(),
+                userRepository.findById(id).get().getEmail(),
+                userRepository.findById(id).get().getUsername(),
+                userRepository.findById(id).get().getPassword(),
+                userRepository.findById(id).get().getPoints() + earnedPoints,
+                userRepository.findById(id).get().getDateCreated()
+
+        ));
+    }
 }

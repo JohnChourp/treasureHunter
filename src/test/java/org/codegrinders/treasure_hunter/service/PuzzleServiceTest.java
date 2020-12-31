@@ -44,8 +44,8 @@ public class PuzzleServiceTest {
     @Test
     public void FindPuzzleById(){
         List<Puzzle> puzzles=new ArrayList<>();
-        puzzles.add( new Puzzle("1","what is life?","unknown",1));
-        puzzles.add( new Puzzle("2","what is live?","unknown2",2));
+        puzzles.add( new Puzzle("1","what is life?","unknown",1,null));
+        puzzles.add( new Puzzle("2","what is live?","unknown2",2,null));
 
         given(puzzleRepository.findAll()).willReturn(puzzles);
 

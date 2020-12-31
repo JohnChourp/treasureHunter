@@ -12,13 +12,15 @@ public class Puzzle {
     private String question;
     private String answer;
     private int points;
+    private String userId;
 
     @PersistenceConstructor
-    public Puzzle(String id, String question, String answer, int points) {
+    public Puzzle(String id, String question, String answer, int points, String userId) {
         this.id = id;
         this.question = question;
         this.answer = answer;
         this.points = points;
+        this.userId = userId;
     }
 
     public Puzzle(String question, String answer, int points) {
