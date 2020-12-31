@@ -81,6 +81,7 @@ public class UserService {
                 userRepository.findById(id).get().getPassword(),
                 userRepository.findById(id).get().getPoints() + earnedPoints,
                 userRepository.findById(id).get().getDateCreated()
+
         ));
     }
 }
