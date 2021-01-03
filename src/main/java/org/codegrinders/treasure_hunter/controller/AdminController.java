@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -33,14 +34,14 @@ public class AdminController {
     }
 
 
-    @RequestMapping("/save")
-    public String save(Puzzle puzzle) {
-        try {
-            puzzleService.addPuzzle(puzzle);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "puzzles";
-        }
+    @PostMapping("/save")
+    public String PostPuzzle(Puzzle puzzle,Model model) {
+        model.addAttribute("puzzle",puzzleService.addPuzzle(puzzle));
+        return "puzzles";
+    }
+    @GetMapping("/save")
+    public String GetPuzzle(Puzzle puzzle,Model model) {
+        model.addAttribute("puzzle",new Puzzle());
         return "puzzles";
     }
 
