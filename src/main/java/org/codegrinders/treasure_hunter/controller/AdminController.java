@@ -1,5 +1,6 @@
 package org.codegrinders.treasure_hunter.controller;
 
+import org.codegrinders.treasure_hunter.model.Marker;
 import org.codegrinders.treasure_hunter.model.Puzzle;
 import org.codegrinders.treasure_hunter.model.User;
 import org.codegrinders.treasure_hunter.service.MarkerService;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -79,4 +81,16 @@ public class AdminController {
         model.addAttribute("users", userService.findAll());
         return "allUsers";
     }
+    @GetMapping("/addMarker")
+    public String welcome1(Marker marker, Model model) {
+        model.addAttribute("marker",new Marker());
+        return "addMarker";
+    }
+
+    @PostMapping("/addMarker")
+    public String saveMarker(Marker marker,Model model) {
+        model.addAttribute("marker",markerService.addMarker(marker) );
+        return "addMarker";
+    }
+
 }
