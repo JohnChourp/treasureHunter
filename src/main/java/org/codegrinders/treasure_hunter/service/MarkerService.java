@@ -46,4 +46,7 @@ public class MarkerService {
         return null;
     }
 
+    public Marker addMarker(Marker marker) {
+        return markerRepository.insert(marker);
+    }
 }
