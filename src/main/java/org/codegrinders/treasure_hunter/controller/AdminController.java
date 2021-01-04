@@ -116,6 +116,7 @@ public class AdminController {
         model.addAttribute("puzzles", puzzleService.findAll());
         return "redirect:/allPuzzles";
     }
+
     @GetMapping("/editUser/{id}")
     public String showUpdateFormUser(@PathVariable("id") String id, Model model) {
         User user = userService.findById(id)
@@ -124,8 +125,9 @@ public class AdminController {
         model.addAttribute("user", user);
         return "updateUser";
     }
+
     @PostMapping("/updateUser/{id}")
-    public String updateUser(@PathVariable("id") String id,  User user, BindingResult result, Model model) {
+    public String updateUser(@PathVariable("id") String id, User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             user.setId(id);
             return "updateUser";

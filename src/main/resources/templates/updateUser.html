@@ -133,7 +133,7 @@
     <input type="text" th:field="*{email}" id="email" placeholder="Email">
     <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
     <input type="submit" value="Save Changes">
-    <button th:href="@{/allUsers}" type="btn" >Cancel</button>
+    <button th:href="@{/allUsers}" type="btn">Cancel</button>
 </form>
 </body>
 </html>
