@@ -1,3 +1,4 @@
+
 <div class="topnav" xmlns:th="http://www.w3.org/1999/xhtml">
     <a class="active" href="/welcome">Home</a>
     <div class="dropdown">
@@ -7,8 +8,6 @@
         <div class="dropdown-content" id="myDropdown">
             <a href="/allUsers" th:action="@{/allUsers}">Show Users</a>
             <a href="#adduser">Add User</a>
-            <a href="#deleteuser">Delete User</a>
-            <a href="#updateuser">Update User</a>
         </div>
     </div>
     <div class="dropdown">
@@ -16,10 +15,9 @@
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content" id="myDropdown">
-            <a href="/allPuzzles" th:action="@{/allPuzzles}">Show Puzzle</a>
+            <a href="/allPuzzles" th:action="@{/allPuzzles}">Show Puzzles</a>
             <a href="/save" th:action="@{/save}">Add Puzzle</a>
             <a href="/allPuzzles" th:action="@{/deletePuzzle/{id}}">Delete Puzzle</a>
-            <a href="#changelocation">Change Location</a>
         </div>
     </div>
     <div class="dropdown">
