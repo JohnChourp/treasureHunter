@@ -116,5 +116,13 @@ public class AdminController {
         model.addAttribute("puzzles", puzzleService.findAll());
         return "redirect:/allPuzzles";
     }
+    @GetMapping("/editUser/{id}")
+    public String showUpdateFormUser(@PathVariable("id") String id, Model model) {
+        User user = userService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+
+        model.addAttribute("user", user);
+        return "updateUser";
+    }
 
 }
