@@ -37,13 +37,14 @@ public class AdminController {
 
 
     @PostMapping("/save")
-    public String PostPuzzle(Puzzle puzzle,Model model) {
-        model.addAttribute("puzzle",puzzleService.addPuzzle(puzzle));
+    public String PostPuzzle(Puzzle puzzle, Model model) {
+        model.addAttribute("puzzle", puzzleService.addPuzzle(puzzle));
         return "puzzles";
     }
+
     @GetMapping("/save")
-    public String GetPuzzle(Puzzle puzzle,Model model) {
-        model.addAttribute("puzzle",new Puzzle());
+    public String GetPuzzle(Puzzle puzzle, Model model) {
+        model.addAttribute("puzzle", new Puzzle());
         return "puzzles";
     }
 
@@ -82,17 +83,19 @@ public class AdminController {
         model.addAttribute("users", userService.findAll());
         return "allUsers";
     }
+
     @GetMapping("/addMarker")
     public String welcome1(Marker marker, Model model) {
-        model.addAttribute("marker",new Marker());
+        model.addAttribute("marker", new Marker());
         return "addMarker";
     }
 
     @PostMapping("/addMarker")
-    public String saveMarker(Marker marker,Model model) {
-        model.addAttribute("marker",markerService.addMarker(marker) );
+    public String saveMarker(Marker marker, Model model) {
+        model.addAttribute("marker", markerService.addMarker(marker));
         return "addMarker";
     }
+
     @GetMapping("/editPuzzle/{id}")
     public String showUpdateFormPuzzle(@PathVariable("id") String id, Model model) {
         Puzzle puzzle = puzzleService.findById(id)
