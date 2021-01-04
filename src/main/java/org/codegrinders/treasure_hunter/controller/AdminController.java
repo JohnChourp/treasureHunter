@@ -9,6 +9,7 @@ import org.codegrinders.treasure_hunter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,13 +37,14 @@ public class AdminController {
 
 
     @PostMapping("/save")
-    public String PostPuzzle(Puzzle puzzle,Model model) {
-        model.addAttribute("puzzle",puzzleService.addPuzzle(puzzle));
+    public String PostPuzzle(Puzzle puzzle, Model model) {
+        model.addAttribute("puzzle", puzzleService.addPuzzle(puzzle));
         return "puzzles";
     }
+
     @GetMapping("/save")
-    public String GetPuzzle(Puzzle puzzle,Model model) {
-        model.addAttribute("puzzle",new Puzzle());
+    public String GetPuzzle(Puzzle puzzle, Model model) {
+        model.addAttribute("puzzle", new Puzzle());
         return "puzzles";
     }
 
@@ -81,16 +83,38 @@ public class AdminController {
         model.addAttribute("users", userService.findAll());
         return "allUsers";
     }
+
     @GetMapping("/addMarker")
     public String welcome1(Marker marker, Model model) {
-        model.addAttribute("marker",new Marker());
+        model.addAttribute("marker", new Marker());
         return "addMarker";
     }
 
     @PostMapping("/addMarker")
-    public String saveMarker(Marker marker,Model model) {
-        model.addAttribute("marker",markerService.addMarker(marker) );
+    public String saveMarker(Marker marker, Model model) {
+        model.addAttribute("marker", markerService.addMarker(marker));
         return "addMarker";
+    }
+
+    @GetMapping("/editPuzzle/{id}")
+    public String showUpdateFormPuzzle(@PathVariable("id") String id, Model model) {
+        Puzzle puzzle = puzzleService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+
+        model.addAttribute("puzzle", puzzle);
+        return "updatePuzzle";
+    }
+
+    @PostMapping("/updatePuzzle/{id}")
+    public String updatePuzzle(@PathVariable("id") String id, Puzzle puzzle, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            puzzle.setId(id);
+            return "updatePuzzle";
+        }
+
+        puzzleService.updatePuzzle(puzzle);
+        model.addAttribute("puzzles", puzzleService.findAll());
+        return "redirect:/allPuzzles";
     }
 
 }
