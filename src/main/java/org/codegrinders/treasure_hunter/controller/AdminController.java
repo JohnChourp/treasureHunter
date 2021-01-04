@@ -124,5 +124,16 @@ public class AdminController {
         model.addAttribute("user", user);
         return "updateUser";
     }
+    @PostMapping("/updateUser/{id}")
+    public String updateUser(@PathVariable("id") String id,  User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            user.setId(id);
+            return "updateUser";
+        }
+
+        userService.updateUser(user);
+        model.addAttribute("users", userService.findAll());
+        return "redirect:/allUsers";
+    }
 
 }
