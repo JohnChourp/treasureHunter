@@ -65,6 +65,9 @@ public class Puzzle {
         this.points = points;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
     @Override
     public String toString() {
         return "Puzzle{" +
