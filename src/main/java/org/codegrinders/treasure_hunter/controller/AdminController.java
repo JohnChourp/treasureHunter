@@ -92,5 +92,13 @@ public class AdminController {
         model.addAttribute("marker",markerService.addMarker(marker) );
         return "addMarker";
     }
+    @GetMapping("/editPuzzle/{id}")
+    public String showUpdateFormPuzzle(@PathVariable("id") String id, Model model) {
+        Puzzle puzzle = puzzleService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+
+        model.addAttribute("puzzle", puzzle);
+        return "updatePuzzle";
+    }
 
 }
