@@ -86,7 +86,7 @@ public class UserService {
     }
 
     public void updateHasWon(String userId){
-        if(findById(userId).get().getPoints() > 200){
+        if(findById(userId).get().getPoints() > 400){
             updateUser(new User(
                     findById(userId).get().getId(),
                     findById(userId).get().getEmail(),
