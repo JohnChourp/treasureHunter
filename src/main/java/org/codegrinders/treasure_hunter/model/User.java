@@ -43,6 +43,14 @@ public class User {
 
     }
 
+    public User(String email, String username, String password, int points, LocalDateTime dateCreated) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.points = points;
+        this.dateCreated = dateCreated;
+    }
+
     public User(String email, String username, String password){
         this.email = email;
         this.username = username;

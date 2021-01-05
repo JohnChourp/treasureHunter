@@ -35,21 +35,23 @@ public class TreasureHunterApplication implements CommandLineRunner {
         userRepository.deleteAll();
         markerRepository.deleteAll();
 
-        puzzleRepository.save(new Puzzle("5+5 equals? (10)", "10", 500));
-        puzzleRepository.save(new Puzzle("Does the donkey fly? (yes)", "yes", 1100));
-        puzzleRepository.save(new Puzzle("Are apples and oranges vegetables? (no)", "no", 300));
-        puzzleRepository.save(new Puzzle("How is the weather today? (35)", "35", 650));
-        puzzleRepository.save(new Puzzle("You can't pass? (miss mary)", "miss mary", 2300));
-        puzzleRepository.save(new Puzzle("does it does it? (y)","yes",5));
+        puzzleRepository.save(new Puzzle("5+5 equals? (10)", "10", 100));
+        puzzleRepository.save(new Puzzle("Does the donkey fly? (yes)", "yes", 300));
+        puzzleRepository.save(new Puzzle("Are apples and oranges vegetables? (no)", "no", 500));
+        puzzleRepository.save(new Puzzle("How is the weather today? (35)", "35", 100));
+        puzzleRepository.save(new Puzzle("You can't pass? (miss mary)", "miss mary", 300));
+        puzzleRepository.save(new Puzzle("does it does it? (yes)","yes",500));
 
-        userRepository.save(new User("1", "pakis@pakis.gr", "pakis", "111", 55, LocalDateTime.now()));
-        userRepository.save(new User("2", "sakis@sakis.gr", "sakis", "222", 15, LocalDateTime.now()));
-        userRepository.save(new User("3", "takis@takis.gr", "takis", "333", 35, LocalDateTime.now()));
-        userRepository.save(new User("", "totis", "123123"));
+        userRepository.save(new User("pakis@pakis.gr", "pakis", "111", 0, LocalDateTime.now()));
+        userRepository.save(new User("sakis@sakis.gr", "sakis", "222", 0, LocalDateTime.now()));
+        userRepository.save(new User("takis@takis.gr", "takis", "333", 0, LocalDateTime.now()));
 
-        markerRepository.save(new Marker("1", 41.07634, 23.55451,"library","easy", puzzleRepository.findAll().get(0).getId(),true));
-        markerRepository.save(new Marker("2", 41.07457, 23.55395,"canteen","medium", puzzleRepository.findAll().get(1).getId(),true));
-        markerRepository.save(new Marker("3", 41.07637, 23.55309,"Management building","hard", puzzleRepository.findAll().get(2).getId(),true));
+        markerRepository.save(new Marker("1", 41.07639384506259, 23.55436861607741,"Library","easy", puzzleRepository.findAll().get(0).getId(),true));
+        markerRepository.save(new Marker("2", 41.074579055248044, 23.553908368320705,"Canteen","medium", puzzleRepository.findAll().get(1).getId(),true));
+        markerRepository.save(new Marker("3", 41.07641471735913, 23.553189582884215,"Management Building","hard", puzzleRepository.findAll().get(2).getId(),true));
+        markerRepository.save(new Marker("4", 41.07559847572417, 23.550664485427845,"Student Club","easy", puzzleRepository.findAll().get(3).getId(),true));
+        markerRepository.save(new Marker("5", 41.07416585770809, 23.554070023473408,"Theatre","medium", puzzleRepository.findAll().get(4).getId(),true));
+        markerRepository.save(new Marker("6", 41.07458492957822, 23.555268268790538,"Computer Science Department","hard", puzzleRepository.findAll().get(5).getId(),true));
     }
 
 }
