@@ -74,14 +74,28 @@ public class UserService {
     }
 
     public void updatePoints(String id, int earnedPoints) {
-        userRepository.save(new User(
-                userRepository.findById(id).get().getId(),
-                userRepository.findById(id).get().getEmail(),
-                userRepository.findById(id).get().getUsername(),
-                userRepository.findById(id).get().getPassword(),
-                userRepository.findById(id).get().getPoints() + earnedPoints,
-                userRepository.findById(id).get().getDateCreated()
-
+        updateUser(new User(
+                findById(id).get().getId(),
+                findById(id).get().getEmail(),
+                findById(id).get().getUsername(),
+                findById(id).get().getPassword(),
+                findById(id).get().getPoints() + earnedPoints,
+                findById(id).get().getDateCreated(),
+                false
         ));
+    }
+
+    public void updateHasWon(String userId){
+        if(findById(userId).get().getPoints() > 200){
+            updateUser(new User(
+                    findById(userId).get().getId(),
+                    findById(userId).get().getEmail(),
+                    findById(userId).get().getUsername(),
+                    findById(userId).get().getPassword(),
+                    findById(userId).get().getPoints(),
+                    findById(userId).get().getDateCreated(),
+                    true
+            ));
+        }
     }
 }

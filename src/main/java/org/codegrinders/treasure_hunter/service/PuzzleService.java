@@ -40,9 +40,9 @@ public class PuzzleService {
         puzzleRepository.deleteById(id);
     }
 
-    public boolean puzzleIsCorrect(String id, String answer) {
-        if (puzzleRepository.existsById(id)) {
-            return puzzleRepository.findById(id).get().getAnswer().equals(answer);
+    public boolean puzzleIsCorrect(String puzzleId, String answer) {
+        if (puzzleRepository.existsById(puzzleId)) {
+            return puzzleRepository.findById(puzzleId).get().getAnswer().equals(answer);
         }
         return false;
     }

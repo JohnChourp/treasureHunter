@@ -22,14 +22,14 @@ public class UserRepositoryTest {
 
     @Test
     public void testFindUserByUsername_should_return_user() {
-        User user = new User("7", "mits@mits.gr", "pakis", "111", 0, LocalDateTime.now());
+        User user = new User("7", "mits@mits.gr", "pakis", "111", 0, LocalDateTime.now(),false);
         Assert.assertNotNull(userRepository.findUserByUsername(user.getUsername()));
 
     }
 
     @Test
     public void testFindUserByEmail_should_return_user() {
-        User user = new User("7", "pakis@pakis.gr", "mits", "111", 0,LocalDateTime.now());
+        User user = new User("7", "pakis@pakis.gr", "mits", "111", 0,LocalDateTime.now(),false);
         Assert.assertNotNull(userRepository.findUserByEmail(user.getEmail()));
     }
 

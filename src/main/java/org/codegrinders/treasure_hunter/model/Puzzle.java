@@ -12,15 +12,13 @@ public class Puzzle {
     private String question;
     private String answer;
     private int points;
-    private String userId;
 
     @PersistenceConstructor
-    public Puzzle(String id, String question, String answer, int points, String userId) {
+    public Puzzle(String id, String question, String answer, int points) {
         this.id = id;
         this.question = question;
         this.answer = answer;
         this.points = points;
-        this.userId = userId;
     }
 
     public Puzzle(String question, String answer, int points) {
@@ -72,9 +70,9 @@ public class Puzzle {
     @Override
     public String toString() {
         return "Puzzle{" +
-                "id='" + id + '\'' +
-                ", question='" + question + '\'' +
-                ", answer='" + answer + '\'' +
+                "id='" + id +
+                ", question='" + question +
+                ", answer='" + answer +
                 ", points=" + points +
                 '}';
     }

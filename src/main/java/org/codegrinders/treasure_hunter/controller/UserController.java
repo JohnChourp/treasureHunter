@@ -30,16 +30,13 @@ public class UserController {
     @GetMapping(value = "/{id}")
     public Optional<User> getUser(@PathVariable String id) {
         return userService.findById(id);
-
     }
 
     @GetMapping(value = "/login")
     public User loginUser(@RequestParam("username") String username, @RequestParam("password") String password) {
-
         if (userService.loginApproval(username, password)) {
             return new User(userService.getUserByUsername(username).getId(), userService.getUserByUsername(username).getUsername(), userService.getUserByUsername(username).getPoints());
         }
-
         return new User();
     }
 
