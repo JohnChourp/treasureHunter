@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class UserTest {
 
     private User user =
-            new User("1","user@user.com","user","1234",0, LocalDateTime.now());
+            new User("1","user@user.com","user","1234",0, LocalDateTime.now(),false);
 
 
 

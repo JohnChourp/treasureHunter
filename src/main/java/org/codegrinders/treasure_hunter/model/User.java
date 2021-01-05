@@ -26,6 +26,8 @@ public class User {
     private String password;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private int points;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private boolean hasWon;
     @JsonSerialize(using = ToStringSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -33,14 +35,22 @@ public class User {
     private LocalDateTime dateCreated = LocalDateTime.now();
 
     @PersistenceConstructor
-    public User(String id, String email, String username, String password, int points,LocalDateTime dateCreated){
+    public User(String id, String email, String username, String password, int points,LocalDateTime dateCreated,boolean hasWon){
         this.id = id;
         this.email = email;
         this.username = username;
         this.password = password;
         this.points = points;
         this.dateCreated = dateCreated;
+        this.hasWon = hasWon;
+    }
 
+    public User(String email, String username, String password, int points, LocalDateTime dateCreated) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.points = points;
+        this.dateCreated = dateCreated;
     }
 
     public User(String email, String username, String password){
@@ -51,11 +61,6 @@ public class User {
 
     public User(String id, String username, int points) {
         this.id = id;
-        this.username = username;
-        this.points = points;
-    }
-
-    public User(String username, int points) {
         this.username = username;
         this.points = points;
     }
@@ -111,14 +116,23 @@ public class User {
         return dateCreated;
     }
 
+    public boolean isHasWon() {
+        return hasWon;
+    }
+
+    public void setHasWon(boolean hasWon) {
+        this.hasWon = hasWon;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id + '\'' +
-                ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", points=" + points +'\'' +
+                "id='" + id +
+                ", email='" + email +
+                ", username='" + username +
+                ", password='" + password +
+                ", points=" + points +
+                ", Won=" + hasWon +
                 ", date=" + dateCreated +
                 '}';
     }

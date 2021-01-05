@@ -33,7 +33,7 @@ public class UserServiceTest {
     @InjectMocks
     private UserService userService;
 
-    private User user = new User("4", "elena@elena.gr", "elena", "111", 0, LocalDateTime.now());
+    private User user = new User("4", "elena@elena.gr", "elena", "111", 0, LocalDateTime.now(),false);
 
     @Before
     public void init() {
@@ -50,7 +50,7 @@ public class UserServiceTest {
     @Test
     public void FindAllUsers() {
         List<User> users=new ArrayList<>();
-        users.add( new User("1", "user@user.com", "user", "1234", 0,LocalDateTime.now()));
+        users.add( new User("1", "user@user.com", "user", "1234", 0,LocalDateTime.now(),false));
 
         given(userRepository.findAll()).willReturn(users);
 
@@ -96,7 +96,7 @@ public class UserServiceTest {
 
     @Test(expected = Exception.class)
     public void when_a_user_exists_should_throw_exception() throws EmailIsAlreadyInUseException {
-        User user = new User("2", "pakis@pakis.gr", "sdf", "sdf", 0, LocalDateTime.now());
+        User user = new User("2", "pakis@pakis.gr", "sdf", "sdf", 0, LocalDateTime.now(),false);
         when(userRepository.findUserByEmail(user.getEmail())).thenReturn(user);
         when(userService.emailExists(user.getEmail())).thenReturn(true);
         willThrow(new Exception()).given(userService).registerUser(user);

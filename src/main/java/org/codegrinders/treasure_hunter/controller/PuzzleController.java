@@ -36,11 +36,12 @@ public class PuzzleController {
     }
 
     @GetMapping(value = "/answer")
-    public Puzzle puzzleIsCorrect(@RequestParam("id") String id, @RequestParam("answer") String answer, @RequestParam("userId") String userId) {
-        if (puzzleService.puzzleIsCorrect(id, answer)) {
-            markerService.updateVisibility(markerService.findMarkerByPuzzleId(id), false);
-            userService.updatePoints(userId, puzzleService.findById(id).get().getPoints());
-            return new Puzzle(puzzleService.findById(id).get().getId(), puzzleService.findById(id).get().getAnswer());
+    public Puzzle puzzleIsCorrect(@RequestParam("id") String puzzleId, @RequestParam("answer") String answer, @RequestParam("userId") String userId) {
+        if (puzzleService.puzzleIsCorrect(puzzleId, answer)) {
+            markerService.updateVisibility(markerService.findMarkerByPuzzleId(puzzleId), false);
+            userService.updatePoints(userId, puzzleService.findById(puzzleId).get().getPoints());
+            userService.updateHasWon(userId);
+            return new Puzzle(puzzleService.findById(puzzleId).get().getId(), puzzleService.findById(puzzleId).get().getAnswer());
         }
         return new Puzzle();
     }

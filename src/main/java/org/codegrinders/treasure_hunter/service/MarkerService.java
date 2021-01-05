@@ -21,32 +21,30 @@ public class MarkerService {
     public Optional<Marker> findById(String id) {
         return markerRepository.findById(id);
     }
+    public Marker addMarker(Marker marker) {
+        return markerRepository.insert(marker);
+    }
 
-    public void updateVisibility(String id, boolean visibility) {
-        //assert id != null;
-        if(markerRepository.existsById(id)) {
+    public void updateVisibility(String markerId, boolean visibility) {
+        if(markerRepository.existsById(markerId)) {
             markerRepository.save(new Marker(
-                    markerRepository.findById(id).get().getId(),
-                    markerRepository.findById(id).get().getLatitude(),
-                    markerRepository.findById(id).get().getLongitude(),
-                    markerRepository.findById(id).get().getTitle(),
-                    markerRepository.findById(id).get().getSnippet(),
-                    markerRepository.findById(id).get().getPuzzleId()
+                    findById(markerId).get().getId(),
+                    findById(markerId).get().getLatitude(),
+                    findById(markerId).get().getLongitude(),
+                    findById(markerId).get().getTitle(),
+                    findById(markerId).get().getSnippet(),
+                    findById(markerId).get().getPuzzleId()
                     , visibility
             ));
         }
     }
 
     public String findMarkerByPuzzleId(String puzzleId) {
-        for (int i = 0; i < markerRepository.findAll().size(); i++) {
-            if (markerRepository.findAll().get(i).getPuzzleId().equals(puzzleId)) {
-                return markerRepository.findAll().get(i).getId();
+        for (int i = 0; i < findAll().size(); i++) {
+            if (findAll().get(i).getPuzzleId().equals(puzzleId)) {
+                return findAll().get(i).getId();
             }
         }
         return null;
-    }
-
-    public Marker addMarker(Marker marker) {
-        return markerRepository.insert(marker);
     }
 }

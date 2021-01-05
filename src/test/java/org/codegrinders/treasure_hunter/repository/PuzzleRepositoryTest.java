@@ -23,7 +23,7 @@ public class PuzzleRepositoryTest {
     public void initialiaze(){
 
         puzzleRepository.deleteAll();
-        puzzle=new Puzzle("1","what is life?","unknown",1,null);
+        puzzle=new Puzzle("1","what is life?","unknown",1);
         puzzleRepository.save(puzzle);
 
     }
