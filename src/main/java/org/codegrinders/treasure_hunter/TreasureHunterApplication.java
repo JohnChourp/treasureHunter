@@ -46,12 +46,12 @@ public class TreasureHunterApplication implements CommandLineRunner {
         userRepository.save(new User("sakis@sakis.gr", "sakis", "222", 0, LocalDateTime.now()));
         userRepository.save(new User("takis@takis.gr", "takis", "333", 0, LocalDateTime.now()));
 
-        markerRepository.save(new Marker("1", 41.07639384506259, 23.55436861607741,"Library","easy", puzzleRepository.findAll().get(0).getId(),true));
-        markerRepository.save(new Marker("2", 41.074579055248044, 23.553908368320705,"Canteen","medium", puzzleRepository.findAll().get(1).getId(),true));
-        markerRepository.save(new Marker("3", 41.07641471735913, 23.553189582884215,"Management Building","hard", puzzleRepository.findAll().get(2).getId(),true));
-        markerRepository.save(new Marker("4", 41.07559847572417, 23.550664485427845,"Student Club","easy", puzzleRepository.findAll().get(3).getId(),true));
-        markerRepository.save(new Marker("5", 41.07416585770809, 23.554070023473408,"Theatre","medium", puzzleRepository.findAll().get(4).getId(),true));
-        markerRepository.save(new Marker("6", 41.07458492957822, 23.555268268790538,"Computer Science Department","hard", puzzleRepository.findAll().get(5).getId(),true));
+        markerRepository.save(new Marker("1", 41.07639384506259, 23.55436861607741,"Library","easy", puzzleRepository.findAll().get(0).getId(),true,"go on"));
+        markerRepository.save(new Marker("2", 41.074579055248044, 23.553908368320705,"Canteen","medium", puzzleRepository.findAll().get(1).getId(),true,"go up"));
+        markerRepository.save(new Marker("3", 41.07641471735913, 23.553189582884215,"Management Building","hard", puzzleRepository.findAll().get(2).getId(),true,"go down"));
+        markerRepository.save(new Marker("4", 41.07559847572417, 23.550664485427845,"Student Club","easy", puzzleRepository.findAll().get(3).getId(),true,"go there"));
+        markerRepository.save(new Marker("5", 41.07416585770809, 23.554070023473408,"Theatre","medium", puzzleRepository.findAll().get(4).getId(),true,"go inside"));
+        markerRepository.save(new Marker("6", 41.07458492957822, 23.555268268790538,"Computer Science Department","hard", puzzleRepository.findAll().get(5).getId(),true,"go out"));
     }
 
 }
