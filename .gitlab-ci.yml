@@ -5,6 +5,7 @@ services:
 
 variables:
   PROJECT_VERSION: 0.0.1
+  $CI_COMMIT_MESSAGE: /\[skip[ _-]tests?\]/i
 
 before_script:
   - git remote set-url origin https://$GIT_USER:$GIT_ACCESS@gitlab.com/$CI_PROJECT_PATH.git
