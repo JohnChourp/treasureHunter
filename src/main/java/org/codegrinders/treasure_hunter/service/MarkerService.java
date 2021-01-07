@@ -34,7 +34,8 @@ public class MarkerService {
                     findById(markerId).get().getTitle(),
                     findById(markerId).get().getSnippet(),
                     findById(markerId).get().getPuzzleId()
-                    , visibility
+                    , visibility,
+                    markerRepository.findById(markerId).get().getDescription()
             ));
         }
     }

@@ -33,8 +33,8 @@ public class MarkerServiceTest {
     @Test
     public void WhenFindAllMarkersCheckIfMarkerIdIsCorrect() {
         List<Marker> markers = new ArrayList<>();
-        markers.add(new Marker("1", 10, 20, "marker1", "a marker", "1", true));
-        markers.add(new Marker("2", 30, 40, "marker2", "another marker", "2", true));
+        markers.add(new Marker("1", 10, 20, "marker1", "a marker", "1", true,"go there"));
+        markers.add(new Marker("2", 30, 40, "marker2", "another marker", "2", true,"go there"));
         given(markerRepository.findAll()).willReturn(markers);
         List<Marker> expected = markerService.findAll();
         assertEquals(expected.get(0).getId(), markers.get(0).getId());
@@ -43,8 +43,8 @@ public class MarkerServiceTest {
     @Test
     public void findById() {
         List<Marker> markers = new ArrayList<>();
-        markers.add(new Marker("1", 10, 20, "marker1", "a marker", "1", true));
-        markers.add(new Marker("2", 30, 40, "marker2", "another marker", "2", true));
+        markers.add(new Marker("1", 10, 20, "marker1", "a marker", "1", true,"go there"));
+        markers.add(new Marker("2", 30, 40, "marker2", "another marker", "2", true,"go there"));
         given(markerRepository.findAll()).willReturn(markers);
         List<Marker> expected = markerService.findAll();
         assertEquals(expected.get(0).getId(), markers.get(0).getId());
@@ -53,9 +53,9 @@ public class MarkerServiceTest {
     @Test
     public void whenFindByPuzzleIdIsCalledWithExistingIdItReturnsCorrespondingMarkerId(){
         List<Marker> markers = new ArrayList<>();
-        markers.add(new Marker("first marker",0,0,null,null,"first puzzle id",true));
-        markers.add(new Marker("second marker",0,0,null,null,"second puzzle id",true));
-        markers.add(new Marker("third marker",0,0,null,null,"third puzzle id",true));
+        markers.add(new Marker("first marker",0,0,null,null,"first puzzle id",true,""));
+        markers.add(new Marker("second marker",0,0,null,null,"second puzzle id",true,""));
+        markers.add(new Marker("third marker",0,0,null,null,"third puzzle id",true,""));
         given(markerRepository.findAll()).willReturn(markers);
         assertEquals("second marker",markerService.findMarkerByPuzzleId("second puzzle id"));
     }
@@ -63,9 +63,9 @@ public class MarkerServiceTest {
     @Test
     public void whenFindByPuzzleIdIsCalledWithNonExistingIdItReturnsNull(){
         List<Marker> markers = new ArrayList<>();
-        markers.add(new Marker("first marker",0,0,null,null,"first puzzle id",true));
-        markers.add(new Marker("second marker",0,0,null,null,"second puzzle id",true));
-        markers.add(new Marker("third marker",0,0,null,null,"third puzzle id",true));
+        markers.add(new Marker("first marker",0,0,null,null,"first puzzle id",true,""));
+        markers.add(new Marker("second marker",0,0,null,null,"second puzzle id",true,""));
+        markers.add(new Marker("third marker",0,0,null,null,"third puzzle id",true,""));
         given(markerRepository.findAll()).willReturn(markers);
         assertNull(markerService.findMarkerByPuzzleId("nothing"));
     }
