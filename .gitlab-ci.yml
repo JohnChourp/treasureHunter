@@ -5,7 +5,7 @@ services:
 
 variables:
   PROJECT_VERSION: 0.0.1
-  MONGO_URI: 'mongodb://mongo/TreasureHunter'
+  MONGO_URI: 'mongodb://mongo:27017/$TreasureHunter'
 
 
 before_script:
@@ -21,7 +21,7 @@ maven-build:
   image: maven:3-jdk-8
   stage: build
   script:
-    - ping mongo -c 50
+    - ping mongo -c 10
     - sed -i 's/CI_PIPELINE_ID/${CI_PIPELINE_ID}/g' pom.xml
     - sed -i 's/PROJECT_VERSION/${PROJECT_VERSION}/g' pom.xml
     - mvn clean package
