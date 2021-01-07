@@ -38,7 +38,7 @@ assembleRelease:
     - echo "$GIT_ACCESSS"
     - git config --get remote.origin.url
     - git log --pretty=format:"%cd %s" > changelog.txt
-#    - git tag $PROJECT_NAME-$PROJECT_VERSION-$CI_PIPELINE_ID -F changelog.txt
+    - git tag $PROJECT_NAME-$PROJECT_VERSION-$CI_PIPELINE_ID -F changelog.txt
     - git push origin $PROJECT_NAME-$PROJECT_VERSION-$CI_PIPELINE_ID
     - |
       curl --fail --output "/dev/null" --silent --show-error --write-out "HTTP response: ${http_code}\n\n" \
