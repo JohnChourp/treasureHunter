@@ -4,7 +4,7 @@ services:
   - mongo:latest
 
 variables:
-  PROJECT_NAME: Treasure_Hunter
+  PROJECT_NAME: treasure_hunter
   PROJECT_VERSION: 0.0.1
 
 before_script:
@@ -31,16 +31,18 @@ maven-build:
 assembleRelease:
   stage: release
   script:
+    - echo $GIT_USER_2
+    - echo $GIT_ACCESS_2
     - git log --pretty=format:"%cd %s" > changelog.txt
     - git tag $PROJECT_NAME-$PROJECT_VERSION-$CI_PIPELINE_ID -F changelog.txt
     - git push origin $PROJECT_NAME-$PROJECT_VERSION-$CI_PIPELINE_ID
-#    - |
-#      curl --fail --output "/dev/null" --silent --show-error --write-out "HTTP response: ${http_code}\n\n" \
-#        --data "{\"tag_name\": \"${PROJECT_NAME}-${PROJECT_VERSION}-${CI_PIPELINE_ID}\", \"name\": \"${PROJECT_NAME}-${PROJECT_VERSION}-${CI_PIPELINE_ID}\",  \"assets\": { \"links\": [{ \"name\": \"release\", \"url\": \"https://gitlab.com/aneziou/treasure_hunter/-/jobs/${CI_JOB_ID}/artifacts/download\" }] }, \"description\": \"No release notes.\"}" \
-#        --header "Content-Type: application/json" \
-#        --header "Private-Token: ${GIT_ACCESS_2}" \
-#        --request POST \
-#        "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/releases"
+    - |
+      curl --fail --output "/dev/null" --silent --show-error --write-out "HTTP response: ${http_code}\n\n" \
+        --data "{\"tag_name\": \"${PROJECT_NAME}-${PROJECT_VERSION}-${CI_PIPELINE_ID}\", \"name\": \"${PROJECT_NAME}-${PROJECT_VERSION}-${CI_PIPELINE_ID}\",  \"assets\": { \"links\": [{ \"name\": \"release\", \"url\": \"https://gitlab.com/aneziou/treasure_hunter/-/jobs/${CI_JOB_ID}/artifacts/download\" }] }, \"description\": \"No release notes.\"}" \
+        --header "Content-Type: application/json" \
+        --header "Private-Token: ${GIT_ACCESS_2}" \
+        --request POST \
+        "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/releases"
   artifacts:
     paths:
       - target/*.jar
