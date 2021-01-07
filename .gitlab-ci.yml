@@ -31,8 +31,8 @@ stages:
 assembleRelease:
   stage: release
   script:
-    - echo $GIT_USER_2
-    - echo $GIT_ACCESS_2
+    - echo ${GIT_USER_2}
+    - echo ${GIT_ACCESS_2}
     - git log --pretty=format:"%cd %s" > changelog.txt
     - git tag $PROJECT_NAME-$PROJECT_VERSION-$CI_PIPELINE_ID -F changelog.txt
     - git push origin $PROJECT_NAME-$PROJECT_VERSION-$CI_PIPELINE_ID
