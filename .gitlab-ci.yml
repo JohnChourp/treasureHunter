@@ -13,20 +13,20 @@ before_script:
   - git config --global user.name 'aneziou'
 
 stages:
-  - build
+#  - build
   - release
 
-maven-build:
-  image: maven:3-jdk-8
-  stage: build
-  script:
-    - ping mongo -c 10
-    - sed -i 's/CI_PIPELINE_ID/${CI_PIPELINE_ID}/g' pom.xml
-    - sed -i 's/PROJECT_VERSION/${PROJECT_VERSION}/g' pom.xml
-    - mvn clean package
-  artifacts:
-    paths:
-      - target/*.jar
+#maven-build:
+#  image: maven:3-jdk-8
+#  stage: build
+#  script:
+#    - ping mongo -c 10
+#    - sed -i 's/CI_PIPELINE_ID/${CI_PIPELINE_ID}/g' pom.xml
+#    - sed -i 's/PROJECT_VERSION/${PROJECT_VERSION}/g' pom.xml
+#    - mvn clean package
+#  artifacts:
+#    paths:
+#      - target/*.jar
 
 assembleRelease:
   stage: release
