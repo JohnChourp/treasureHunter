@@ -5,7 +5,7 @@ services:
 
 variables:
   PROJECT_VERSION: 0.0.1
-  MONGO_URI: 'mongodb://mongo:27017/$TreasureHunter'
+  DATABASE_URL: 'mongodb://mongo:27017/$TreasureHunter'
 
 
 before_script:
