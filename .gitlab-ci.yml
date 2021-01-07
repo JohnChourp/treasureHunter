@@ -33,6 +33,8 @@ stages:
 assembleRelease:
   stage: release
   script:
+    - echo "$GIT_USERR"
+    - echo "$GIT_ACCESSS"
     - git config --get remote.origin.url
     - git log --pretty=format:"%cd %s" > changelog.txt
     - git tag $PROJECT_NAME-$PROJECT_VERSION-$CI_PIPELINE_ID -F changelog.txt
