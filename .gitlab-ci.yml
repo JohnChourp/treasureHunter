@@ -4,6 +4,7 @@ services:
   - mongo:latest
 
 variables:
+  PROJECT_NAME: Treasure_Hunter
   PROJECT_VERSION: 0.0.1
   DATABASE_URL: 'mongodb://mongo:27017/$TreasureHunter'
 
@@ -37,7 +38,7 @@ assembleRelease:
     - git push origin demo-${PROJECT_VERSION}-${CI_PIPELINE_ID}
     - |
       curl --fail --output "/dev/null" --silent --show-error --write-out "HTTP response: ${http_code}\n\n" \
-        --data "{\"tag_name\": \"demo-${PROJECT_VERSION}-${CI_PIPELINE_ID}\", \"name\": \"${CI_PROJECT_NAME} demo-${PROJECT_VERSION}-${CI_PIPELINE_ID}\",  \"assets\": { \"links\": [{ \"name\": \"release\", \"url\": \"https://gitlab.com/aneziou/treasure_hunter/-/jobs/${CI_JOB_ID}/artifacts/download\" }] }, \"description\": \"No release notes.\"}" \
+        --data "{\"tag_name\": \"demo-${PROJECT_VERSION}-${CI_PIPELINE_ID}\", \"name\": \"${PROJECT_NAME} demo-${PROJECT_VERSION}-${CI_PIPELINE_ID}\",  \"assets\": { \"links\": [{ \"name\": \"release\", \"url\": \"https://gitlab.com/aneziou/treasure_hunter/-/jobs/${CI_JOB_ID}/artifacts/download\" }] }, \"description\": \"No release notes.\"}" \
         --header "Content-Type: application/json" \
         --header "Private-Token: ${GIT_ACCESS_2}" \
         --request POST \
