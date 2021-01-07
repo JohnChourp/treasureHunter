@@ -28,6 +28,7 @@ stages:
 #    paths:
 #      - target/*.jar
 
+
 assembleRelease:
   stage: release
   script:
