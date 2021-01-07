@@ -39,7 +39,7 @@ assembleRelease:
       curl --fail --output "/dev/null" --silent --show-error --write-out "HTTP response: ${http_code}\n\n" \
         --data "{\"tag_name\": \"demo-${PROJECT_VERSION}-${CI_PIPELINE_ID}\", \"name\": \"${CI_PROJECT_NAME} demo-${PROJECT_VERSION}-${CI_PIPELINE_ID}\",  \"assets\": { \"links\": [{ \"name\": \"release\", \"url\": \"https://gitlab.com/aneziou/treasure_hunter/-/jobs/${CI_JOB_ID}/artifacts/download\" }] }, \"description\": \"No release notes.\"}" \
         --header "Content-Type: application/json" \
-        --header "Private-Token: ${TOKEN}" \
+        --header "Private-Token: ${GIT_ACCESS_2}" \
         --request POST \
         "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/releases"
   artifacts:
