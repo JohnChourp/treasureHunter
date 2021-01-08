@@ -85,8 +85,8 @@ public class UserService {
         ));
     }
 
-    public void updateHasWon(String userId){
-        if(findById(userId).get().getPoints() > 400){
+    public void updateHasWon(String userId) {
+        if (findById(userId).get().getPoints() > 400) {
             updateUser(new User(
                     findById(userId).get().getId(),
                     findById(userId).get().getEmail(),
@@ -99,27 +99,36 @@ public class UserService {
         }
     }
 
-    public void updatePassword(String userId, String password) {
-        updateUser(new User(
-                findById(userId).get().getId(),
-                findById(userId).get().getEmail(),
-                findById(userId).get().getUsername(),
-                password,
-                findById(userId).get().getPoints(),
-                findById(userId).get().getDateCreated(),
-                false
-        ));
+    public void updatePassword(String userId, String email, String oldPassword, String newPassword) {
+        if (email.equals(findById(userId).get().getEmail()) && oldPassword.equals(findById(userId).get().getPassword())) {
+            updateUser(new User(
+                    findById(userId).get().getId(),
+                    findById(userId).get().getEmail(),
+                    findById(userId).get().getUsername(),
+                    newPassword,
+                    findById(userId).get().getPoints(),
+                    findById(userId).get().getDateCreated(),
+                    false
+            ));
+        }
     }
 
-    public void updateEmail(String userId, String email) {
-        updateUser(new User(
-                findById(userId).get().getId(),
-                email,
-                findById(userId).get().getUsername(),
-                findById(userId).get().getPassword(),
-                findById(userId).get().getPoints(),
-                findById(userId).get().getDateCreated(),
-                false
-        ));
+    public void updateEmail(String userId, String oldEmail, String newEmail, String password) {
+        if (oldEmail.equals(findById(userId).get().getEmail()) && password.equals(findById(userId).get().getPassword())) {
+            if (this.emailExists(newEmail)) {
+                throw new EmailIsAlreadyInUseException(newEmail);
+            }
+            else {
+                updateUser(new User(
+                        findById(userId).get().getId(),
+                        newEmail,
+                        findById(userId).get().getUsername(),
+                        findById(userId).get().getPassword(),
+                        findById(userId).get().getPoints(),
+                        findById(userId).get().getDateCreated(),
+                        false
+                ));
+            }
+        }
     }
 }
