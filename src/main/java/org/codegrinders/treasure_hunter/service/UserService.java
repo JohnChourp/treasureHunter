@@ -1,6 +1,8 @@
 package org.codegrinders.treasure_hunter.service;
 
+import org.codegrinders.treasure_hunter.exception.EmailDoesntMatchException;
 import org.codegrinders.treasure_hunter.exception.EmailIsAlreadyInUseException;
+import org.codegrinders.treasure_hunter.exception.PasswordDoesntMatchException;
 import org.codegrinders.treasure_hunter.exception.UsernameAlreadyInUseException;
 import org.codegrinders.treasure_hunter.model.User;
 import org.codegrinders.treasure_hunter.repository.UserRepository;
@@ -111,6 +113,12 @@ public class UserService {
                     false
             ));
         }
+        else if(!email.equals(findById(userId).get().getEmail())) {
+            throw new EmailDoesntMatchException();
+        }
+        else if(!oldPassword.equals(findById(userId).get().getPassword())){
+            throw new PasswordDoesntMatchException();
+        }
     }
 
     public void updateEmail(String userId, String oldEmail, String newEmail, String password) {
@@ -129,6 +137,12 @@ public class UserService {
                         false
                 ));
             }
+        }
+        else if(!oldEmail.equals(findById(userId).get().getEmail())) {
+            throw new EmailDoesntMatchException();
+        }
+        else if(!password.equals(findById(userId).get().getPassword())){
+            throw new PasswordDoesntMatchException();
         }
     }
 }
