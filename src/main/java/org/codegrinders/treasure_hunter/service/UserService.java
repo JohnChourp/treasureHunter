@@ -110,4 +110,16 @@ public class UserService {
                 false
         ));
     }
+
+    public void updateEmail(String userId, String email) {
+        updateUser(new User(
+                findById(userId).get().getId(),
+                email,
+                findById(userId).get().getUsername(),
+                findById(userId).get().getPassword(),
+                findById(userId).get().getPoints(),
+                findById(userId).get().getDateCreated(),
+                false
+        ));
+    }
 }
