@@ -98,4 +98,16 @@ public class UserService {
             ));
         }
     }
+
+    public void updatePassword(String userId, String password) {
+        updateUser(new User(
+                findById(userId).get().getId(),
+                findById(userId).get().getEmail(),
+                findById(userId).get().getUsername(),
+                password,
+                findById(userId).get().getPoints(),
+                findById(userId).get().getDateCreated(),
+                false
+        ));
+    }
 }
