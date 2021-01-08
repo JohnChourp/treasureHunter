@@ -117,4 +117,25 @@ public class AdminController {
         return "redirect:/allPuzzles";
     }
 
+    @GetMapping("/editUser/{id}")
+    public String showUpdateFormUser(@PathVariable("id") String id, Model model) {
+        User user = userService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+
+        model.addAttribute("user", user);
+        return "updateUser";
+    }
+
+    @PostMapping("/updateUser/{id}")
+    public String updateUser(@PathVariable("id") String id, User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            user.setId(id);
+            return "updateUser";
+        }
+
+        userService.updateUser(user);
+        model.addAttribute("users", userService.findAll());
+        return "redirect:/allUsers";
+    }
+
 }
