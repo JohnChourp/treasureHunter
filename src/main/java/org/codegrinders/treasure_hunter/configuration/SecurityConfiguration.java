@@ -34,7 +34,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe()
                 .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21));
-
     }
 
     @Autowired
