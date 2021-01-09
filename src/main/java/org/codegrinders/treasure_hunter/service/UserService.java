@@ -87,15 +87,17 @@ public class UserService {
 
     public void updateHasWon(String userId){
         if(findById(userId).get().getPoints() > 400){
-            updateUser(new User(
-                    findById(userId).get().getId(),
-                    findById(userId).get().getEmail(),
-                    findById(userId).get().getUsername(),
-                    findById(userId).get().getPassword(),
-                    findById(userId).get().getPoints(),
-                    findById(userId).get().getDateCreated(),
-                    true
-            ));
+            for(int i = 0;i< findAll().size();i++){
+                updateUser(new User(
+                        findAll().get(i).getId(),
+                        findAll().get(i).getEmail(),
+                        findAll().get(i).getUsername(),
+                        findAll().get(i).getPassword(),
+                        findAll().get(i).getPoints(),
+                        findAll().get(i).getDateCreated(),
+                        true
+                ));
+            }
         }
     }
 }
