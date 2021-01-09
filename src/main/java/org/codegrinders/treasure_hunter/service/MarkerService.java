@@ -21,23 +21,9 @@ public class MarkerService {
     public Optional<Marker> findById(String id) {
         return markerRepository.findById(id);
     }
+
     public Marker addMarker(Marker marker) {
         return markerRepository.insert(marker);
-    }
-
-    public void updateVisibility(String markerId, boolean visibility) {
-        if(markerRepository.existsById(markerId)) {
-            markerRepository.save(new Marker(
-                    findById(markerId).get().getId(),
-                    findById(markerId).get().getLatitude(),
-                    findById(markerId).get().getLongitude(),
-                    findById(markerId).get().getTitle(),
-                    findById(markerId).get().getSnippet(),
-                    findById(markerId).get().getPuzzleId()
-                    , visibility,
-                    markerRepository.findById(markerId).get().getDescription()
-            ));
-        }
     }
 
     public String findMarkerByPuzzleId(String puzzleId) {
