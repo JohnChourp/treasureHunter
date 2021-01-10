@@ -53,5 +53,4 @@ public class TreasureHunterApplication implements CommandLineRunner {
         markerRepository.save(new Marker("5", 41.07416585770809, 23.554070023473408,"Theatre","medium", puzzleRepository.findAll().get(4).getId(),true,"There is a puzzle close to Computer Science Department"));
         markerRepository.save(new Marker("6", 41.07458492957822, 23.555268268790538,"Computer Science Department","hard", puzzleRepository.findAll().get(5).getId(),true,"There is a puzzle close to Library"));
     }
-
 }
