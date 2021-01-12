@@ -1,6 +1,5 @@
 package org.codegrinders.treasure_hunter.service;
 
-import org.codegrinders.treasure_hunter.exception.EmailDoesntMatchException;
 import org.codegrinders.treasure_hunter.exception.EmailIsAlreadyInUseException;
 import org.codegrinders.treasure_hunter.exception.PasswordDoesntMatchException;
 import org.codegrinders.treasure_hunter.exception.UsernameAlreadyInUseException;
@@ -113,36 +112,22 @@ public class UserService {
                     false
             ));
         }
-        else if(!email.equals(findById(userId).get().getEmail())) {
-            throw new EmailDoesntMatchException();
-        }
-        else if(!oldPassword.equals(findById(userId).get().getPassword())){
-            throw new PasswordDoesntMatchException();
-        }
     }
 
-    public void updateEmail(String userId, String oldEmail, String newEmail, String password) {
-        if (oldEmail.equals(findById(userId).get().getEmail()) && password.equals(findById(userId).get().getPassword())) {
-            if (this.emailExists(newEmail)) {
-                throw new EmailIsAlreadyInUseException(newEmail);
-            }
-            else {
-                updateUser(new User(
-                        findById(userId).get().getId(),
-                        newEmail,
-                        findById(userId).get().getUsername(),
-                        findById(userId).get().getPassword(),
-                        findById(userId).get().getPoints(),
-                        findById(userId).get().getDateCreated(),
-                        false
-                ));
-            }
-        }
-        else if(!oldEmail.equals(findById(userId).get().getEmail())) {
-            throw new EmailDoesntMatchException();
-        }
-        else if(!password.equals(findById(userId).get().getPassword())){
-            throw new PasswordDoesntMatchException();
+    public void updateEmail(String userId, String newEmail) {
+
+        if (this.emailExists(newEmail)) {
+            throw new EmailIsAlreadyInUseException(newEmail);
+        } else {
+            updateUser(new User(
+                    findById(userId).get().getId(),
+                    newEmail,
+                    findById(userId).get().getUsername(),
+                    findById(userId).get().getPassword(),
+                    findById(userId).get().getPoints(),
+                    findById(userId).get().getDateCreated(),
+                    false
+            ));
         }
     }
 }
