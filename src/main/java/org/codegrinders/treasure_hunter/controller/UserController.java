@@ -46,8 +46,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/update/email")
-    public User updateEmail(@RequestParam("id") String id) {
-        return userService.findById(id).get();
+    public void updateEmail(@RequestParam("id") String userId, @RequestParam("email") String newEmail) {
+        userService.updateEmail(userId,newEmail);
     }
 
     @GetMapping(value = "/update/password")

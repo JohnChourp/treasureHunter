@@ -116,10 +116,6 @@ public class UserService {
     }
 
     public void updateEmail(String userId, String newEmail) {
-
-        if (this.emailExists(newEmail)) {
-            throw new EmailIsAlreadyInUseException(newEmail);
-        } else {
             updateUser(new User(
                     findById(userId).get().getId(),
                     newEmail,
@@ -130,5 +126,4 @@ public class UserService {
                     false
             ));
         }
-    }
 }
