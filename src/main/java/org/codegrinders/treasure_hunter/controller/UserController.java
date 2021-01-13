@@ -45,6 +45,16 @@ public class UserController {
         return userService.findById(id).get();
     }
 
+    @GetMapping(value = "/update/email")
+    public void updateEmail(@RequestParam("id") String userId, @RequestParam("email") String newEmail) {
+        userService.updateEmail(userId,newEmail);
+    }
+
+    @GetMapping(value = "/update/password")
+    public void updatePassword(@RequestParam("id") String userId, @RequestParam("password") String newPassword) {
+        userService.updatePassword(userId, newPassword);
+    }
+
     @ResponseStatus(value = HttpStatus.CREATED, reason = "All good")
     @PostMapping(value = "/")
     public void addUser(@RequestBody User user) {
@@ -62,4 +72,3 @@ public class UserController {
     }
 
 }
-
