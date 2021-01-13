@@ -85,9 +85,9 @@ public class UserService {
         ));
     }
 
-    public void updateHasWon(String userId){
-        if(findById(userId).get().getPoints() > 400){
-            for(int i = 0;i< findAll().size();i++){
+    public void updateHasWon(String userId) {
+        if (findById(userId).get().getPoints() > 400) {
+            for (int i = 0; i < findAll().size(); i++) {
                 updateUser(new User(
                         findAll().get(i).getId(),
                         findAll().get(i).getEmail(),
@@ -101,29 +101,27 @@ public class UserService {
         }
     }
 
-    public void updatePassword(String userId, String email, String oldPassword, String newPassword) {
-        if (email.equals(findById(userId).get().getEmail()) && oldPassword.equals(findById(userId).get().getPassword())) {
-            updateUser(new User(
-                    findById(userId).get().getId(),
-                    findById(userId).get().getEmail(),
-                    findById(userId).get().getUsername(),
-                    newPassword,
-                    findById(userId).get().getPoints(),
-                    findById(userId).get().getDateCreated(),
-                    false
-            ));
-        }
+    public void updatePassword(String userId, String newPassword) {
+        updateUser(new User(
+                findById(userId).get().getId(),
+                findById(userId).get().getEmail(),
+                findById(userId).get().getUsername(),
+                newPassword,
+                findById(userId).get().getPoints(),
+                findById(userId).get().getDateCreated(),
+                false
+        ));
     }
 
     public void updateEmail(String userId, String newEmail) {
-            updateUser(new User(
-                    findById(userId).get().getId(),
-                    newEmail,
-                    findById(userId).get().getUsername(),
-                    findById(userId).get().getPassword(),
-                    findById(userId).get().getPoints(),
-                    findById(userId).get().getDateCreated(),
-                    false
-            ));
-        }
+        updateUser(new User(
+                findById(userId).get().getId(),
+                newEmail,
+                findById(userId).get().getUsername(),
+                findById(userId).get().getPassword(),
+                findById(userId).get().getPoints(),
+                findById(userId).get().getDateCreated(),
+                false
+        ));
+    }
 }

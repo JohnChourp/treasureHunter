@@ -51,8 +51,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/update/password")
-    public User updatePassword(@RequestParam("id") String id) {
-        return userService.findById(id).get();
+    public void updatePassword(@RequestParam("id") String userId, @RequestParam("password") String newPassword) {
+        userService.updatePassword(userId, newPassword);
     }
 
     @ResponseStatus(value = HttpStatus.CREATED, reason = "All good")
