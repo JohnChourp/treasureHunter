@@ -3,10 +3,11 @@
 <head>
     <script th:replace="fragments/header :: sameElement"></script>
     <script th:replace="fragments/header :: sameElement1"></script>
-    <script th:replace="fragments/header :: addmarker"></script>
+    <script th:replace="fragments/header :: add"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add Marker</title>
+    <div th:replace="fragments/style :: styleForm"></div>
 
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -15,21 +16,21 @@
 
 <div th:replace="fragments/navbar :: nav"></div>
 
-<form id="frm"  th:action="@{/addMarker}" style="width:400px; margin-top: 40px; margin-left: 450px" th:object="${marker}" method="post">
+<form id="frm" class="frm"  th:action="@{/addMarker}"  th:object="${marker}" method="post">
     <input class="input-group input-group-sm mb-3" type="text" placeholder="Add New Marker" aria-label="Disabled input example" disabled>
 
     <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" style="width:100px;" id="title">Title</span>
+        <span class="input-group-text"  id="title">Title</span>
         <input type="text" class="form-control" aria-label="Sizing example input"
                aria-describedby="inputGroup-sizing-sm" name="title" th:field="*{title}"/>
     </div>
     <div class="input-group input-group-sm mb-3 ">
-        <span class="input-group-text" style="width:100px;"  id="snippet">Snippet</span>
+        <span class="input-group-text"  id="snippet">Snippet</span>
         <input type="text" class="form-control" aria-label="Sizing example input"
                aria-describedby="inputGroup-sizing-sm" name="snippet" th:field="*{snippet}"/>
     </div>
     <div class="input-group input-group-sm mb-3 ">
-        <span class="input-group-text" style="width:100px;"  id="puzzleId">Puzzle Id</span>
+        <span class="input-group-text"   id="puzzleId">Puzzle Id</span>
         <input type="text" class="form-control"  aria-label="Sizing example input"
                aria-describedby="inputGroup-sizing-sm" name="puzzleId" th:field="*{puzzleId}"/>
     </div>
@@ -42,18 +43,18 @@
     <br>
 
     <div class="input-group input-group-sm mb-3 ">
-        <span class="input-group-text" style="width:100px;"  id="description">Description</span>
+        <span class="input-group-text"  id="description">Description</span>
         <input type="text" class="form-control"  aria-label="Sizing example input"
                aria-describedby="inputGroup-sizing-sm" name="description" th:field="*{description}"/>
     </div>
 
     <div class="input-group input-group-sm mb-3 ">
-        <span class="input-group-text" style="width:100px;" id="latitude">Latitude</span>
+        <span class="input-group-text" id="latitude">Latitude</span>
         <input  id="latitude1" type="text" class="form-control" aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-sm" name="latitude" th:field="*{latitude}"/>
     </div>
     <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" style="width:100px;" id="longitude">Longitude</span>
+        <span class="input-group-text"  id="longitude">Longitude</span>
         <input id="longitude1" type="text" class="form-control" aria-label="Sizing example input"
                aria-describedby="inputGroup-sizing-sm" name="longitude" th:field="*{longitude}"/>
     </div>
