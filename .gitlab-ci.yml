@@ -21,9 +21,10 @@ maven-build:
   image: maven:3-jdk-8
   stage: build
   script:
-#    - ping mongo -c 5
-    - echo "$localhost"
-    - echo "$mongo"
+    - ping mongo -c 5
+    - ping localhost -c 5
+    - echo $localhost
+    - echo $mongo
     - sed -i 's/CI_PIPELINE_ID/${CI_PIPELINE_ID}/g' pom.xml
     - sed -i 's/PROJECT_VERSION/${PROJECT_VERSION}/g' pom.xml
     - mvn clean package
