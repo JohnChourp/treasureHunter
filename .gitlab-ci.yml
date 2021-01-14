@@ -1,8 +1,7 @@
 image: jangrewe/gitlab-ci-android
 
 services:
-  - mongo:latest
-  - host: spring.data.mongodb.uri=mongodb://mongo:27017/TreasureHunter
+#  - mongo:latest
 
 variables:
   PROJECT_NAME: treasure_hunter
