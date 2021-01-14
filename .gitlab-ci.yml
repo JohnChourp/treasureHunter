@@ -6,13 +6,13 @@ services:
 variables:
   PROJECT_NAME: treasure_hunter
   PROJECT_VERSION: 0.0.1
-  localhost: mongodb://mongodb
 
 before_script:
   - git remote set-url origin https://$GIT_USERR:$GIT_ACCESSS@gitlab.com/$CI_PROJECT_PATH.git
   - git config --global user.email 'anestis.zioulis@outlook.com'
   - git config --global user.name 'aneziou'
-  - export localhost=mongo
+  - ping mongo -c 3
+  - ping localhost -c 3
 
 stages:
   - build
@@ -22,17 +22,12 @@ maven-build:
   image: maven:3-jdk-8
   stage: build
   script:
-    - ping mongo -c 5
-    - ping localhost -c 5
-    - echo $localhost
-    - echo localhost
     - sed -i 's/CI_PIPELINE_ID/${CI_PIPELINE_ID}/g' pom.xml
     - sed -i 's/PROJECT_VERSION/${PROJECT_VERSION}/g' pom.xml
     - mvn clean package
   artifacts:
     paths:
       - target/*.jar
-
 
 
 assembleRelease:
