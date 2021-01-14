@@ -2,6 +2,7 @@ image: jangrewe/gitlab-ci-android
 
 services:
   - mongo:latest
+  - host: spring.data.mongodb.uri=mongodb://mongo:27017/TreasureHunter
 
 variables:
   PROJECT_NAME: treasure_hunter
@@ -11,8 +12,6 @@ before_script:
   - git remote set-url origin https://$GIT_USERR:$GIT_ACCESSS@gitlab.com/$CI_PROJECT_PATH.git
   - git config --global user.email 'anestis.zioulis@outlook.com'
   - git config --global user.name 'aneziou'
-  - ping mongo -c 3
-  - ping localhost -c 3
 
 stages:
   - build
