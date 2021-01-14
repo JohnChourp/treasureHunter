@@ -71,4 +71,8 @@ public class UserController {
         userService.deleteUser(id);
     }
 
+    @GetMapping(value = "/delete")
+    public void deleteAccount(@RequestParam("id") String id) {
+        userService.deleteUser(id);
+    }
 }
