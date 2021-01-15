@@ -34,6 +34,7 @@ public class MarkerService {
         }
         return null;
     }
+
     public void deleteMarker(String id) {
         markerRepository.deleteById(id);
     }

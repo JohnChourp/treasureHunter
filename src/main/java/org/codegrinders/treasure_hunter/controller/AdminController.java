@@ -83,6 +83,7 @@ public class AdminController {
         model.addAttribute("users", userService.findAll());
         return "allUsers";
     }
+
     @GetMapping("/deleteMarker/{id}")
     public String deleteMarker(@PathVariable("id") String id, Model model) {
         Marker marker = markerService.findById(id)

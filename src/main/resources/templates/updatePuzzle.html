@@ -23,7 +23,7 @@
     <input type="text" th:field="*{points}" id="points" placeholder="points">
     <span th:if="${#fields.hasErrors('points')}" th:errors="*{points}"></span>
     <input type="submit" value="Save Changes">
-    <button th:href="@{/allPuzzles}" type="btn" >Cancel</button>
+    <button th:href="@{/allPuzzles}" type="btn">Cancel</button>
 </form>
 </body>
 </html>
