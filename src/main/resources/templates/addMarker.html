@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
+
     <script th:replace="fragments/header :: sameElement"></script>
     <script th:replace="fragments/header :: sameElement1"></script>
     <script th:replace="fragments/header :: add"></script>
@@ -15,46 +16,47 @@
 <body>
 
 <div th:replace="fragments/navbar :: nav"></div>
-
-<form id="frm" class="frm"  th:action="@{/addMarker}"  th:object="${marker}" method="post">
-    <input class="input-group input-group-sm mb-3" type="text" placeholder="Add New Marker" aria-label="Disabled input example" disabled>
+<div th:replace="fragments/style :: style"></div>
+<form id="frm" class="frm" th:action="@{/addMarker}" th:object="${marker}" method="post">
+    <input class="input-group input-group-sm mb-3" type="text" placeholder="Add New Marker"
+           aria-label="Disabled input example" disabled>
 
     <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text"  id="title">Title</span>
+        <span class="input-group-text" id="title">Title</span>
         <input type="text" class="form-control" aria-label="Sizing example input"
                aria-describedby="inputGroup-sizing-sm" name="title" th:field="*{title}"/>
     </div>
     <div class="input-group input-group-sm mb-3 ">
-        <span class="input-group-text"  id="snippet">Snippet</span>
+        <span class="input-group-text" id="snippet">Snippet</span>
         <input type="text" class="form-control" aria-label="Sizing example input"
                aria-describedby="inputGroup-sizing-sm" name="snippet" th:field="*{snippet}"/>
     </div>
     <div class="input-group input-group-sm mb-3 ">
-        <span class="input-group-text"   id="puzzleId">Puzzle Id</span>
-        <input type="text" class="form-control"  aria-label="Sizing example input"
+        <span class="input-group-text" id="puzzleId">Puzzle Id</span>
+        <input type="text" class="form-control" aria-label="Sizing example input"
                aria-describedby="inputGroup-sizing-sm" name="puzzleId" th:field="*{puzzleId}"/>
     </div>
 
     <input class="form-control" type="text" placeholder="Visibility" aria-label="Disabled input example" disabled>
     <select class="form-select form-select-sm" th:field="*{visibility}">
-        <option th:value="1" >true</option>
-        <option th:value="0" >false</option>
+        <option th:value="1">true</option>
+        <option th:value="0">false</option>
     </select>
     <br>
 
     <div class="input-group input-group-sm mb-3 ">
-        <span class="input-group-text"  id="description">Description</span>
-        <input type="text" class="form-control"  aria-label="Sizing example input"
+        <span class="input-group-text" id="description">Description</span>
+        <input type="text" class="form-control" aria-label="Sizing example input"
                aria-describedby="inputGroup-sizing-sm" name="description" th:field="*{description}"/>
     </div>
 
     <div class="input-group input-group-sm mb-3 ">
         <span class="input-group-text" id="latitude">Latitude</span>
-        <input  id="latitude1" type="text" class="form-control" aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-sm" name="latitude" th:field="*{latitude}"/>
+        <input id="latitude1" type="text" class="form-control" aria-label="Sizing example input"
+               aria-describedby="inputGroup-sizing-sm" name="latitude" th:field="*{latitude}"/>
     </div>
     <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text"  id="longitude">Longitude</span>
+        <span class="input-group-text" id="longitude">Longitude</span>
         <input id="longitude1" type="text" class="form-control" aria-label="Sizing example input"
                aria-describedby="inputGroup-sizing-sm" name="longitude" th:field="*{longitude}"/>
     </div>
@@ -67,101 +69,101 @@
 
 <script>
     function myMap() {
-        const myLatlng = { lat: 41.075388313924385, lng: 23.55362296197127 };
-        var mapProp= {
-            center:new google.maps.LatLng(41.075388313924385,23.55362296197127),
-            zoom:17,
+        const myLatlng = {lat: 41.075388313924385, lng: 23.55362296197127};
+        var mapProp = {
+            center: new google.maps.LatLng(41.075388313924385, 23.55362296197127),
+            zoom: 17,
             mapTypeId: 'hybrid',
             styles: [
-                { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+                {elementType: "geometry", stylers: [{color: "#242f3e"}]},
                 {
                     elementType: "labels.text.stroke",
-                    stylers: [{ color: "#242f3e" }],
+                    stylers: [{color: "#242f3e"}],
                 },
                 {
                     elementType: "labels.text.fill",
-                    stylers: [{ color: "#746855" }],
+                    stylers: [{color: "#746855"}],
                 },
                 {
                     featureType: "administrative.locality",
                     elementType: "labels.text.fill",
-                    stylers: [{ color: "#d59563" }],
+                    stylers: [{color: "#d59563"}],
                 },
                 {
                     featureType: "poi",
                     elementType: "labels.text.fill",
-                    stylers: [{ color: "#d59563" }],
+                    stylers: [{color: "#d59563"}],
                 },
                 {
                     featureType: "poi.park",
                     elementType: "geometry",
-                    stylers: [{ color: "#263c3f" }],
+                    stylers: [{color: "#263c3f"}],
                 },
                 {
                     featureType: "poi.park",
                     elementType: "labels.text.fill",
-                    stylers: [{ color: "#6b9a76" }],
+                    stylers: [{color: "#6b9a76"}],
                 },
                 {
                     featureType: "road",
                     elementType: "geometry",
-                    stylers: [{ color: "#38414e" }],
+                    stylers: [{color: "#38414e"}],
                 },
                 {
                     featureType: "road",
                     elementType: "geometry.stroke",
-                    stylers: [{ color: "#212a37" }],
+                    stylers: [{color: "#212a37"}],
                 },
                 {
                     featureType: "road",
                     elementType: "labels.text.fill",
-                    stylers: [{ color: "#9ca5b3" }],
+                    stylers: [{color: "#9ca5b3"}],
                 },
                 {
                     featureType: "road.highway",
                     elementType: "geometry",
-                    stylers: [{ color: "#746855" }],
+                    stylers: [{color: "#746855"}],
                 },
                 {
                     featureType: "road.highway",
                     elementType: "geometry.stroke",
-                    stylers: [{ color: "#1f2835" }],
+                    stylers: [{color: "#1f2835"}],
                 },
                 {
                     featureType: "road.highway",
                     elementType: "labels.text.fill",
-                    stylers: [{ color: "#f3d19c" }],
+                    stylers: [{color: "#f3d19c"}],
                 },
                 {
                     featureType: "transit",
                     elementType: "geometry",
-                    stylers: [{ color: "#2f3948" }],
+                    stylers: [{color: "#2f3948"}],
                 },
                 {
                     featureType: "transit.station",
                     elementType: "labels.text.fill",
-                    stylers: [{ color: "#d59563" }],
+                    stylers: [{color: "#d59563"}],
                 },
                 {
                     featureType: "water",
                     elementType: "geometry",
-                    stylers: [{ color: "#17263c" }],
+                    stylers: [{color: "#17263c"}],
                 },
                 {
                     featureType: "water",
                     elementType: "labels.text.fill",
-                    stylers: [{ color: "#515c6d" }],
+                    stylers: [{color: "#515c6d"}],
                 },
                 {
                     featureType: "water",
                     elementType: "labels.text.stroke",
-                    stylers: [{ color: "#17263c" }],
+                    stylers: [{color: "#17263c"}],
                 },
             ],
 
         };
 
-        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
         var infoWindow = new google.maps.InfoWindow();
         var latlngbounds = new google.maps.LatLngBounds();
@@ -170,18 +172,18 @@
         google.maps.event.addListener(map, 'click', function (e) {
             document.getElementById("latitude1").value = e.latLng.lat();
             document.getElementById("longitude1").value = e.latLng.lng();
-            placeMarker(e.latLng,map);
+            placeMarker(e.latLng, map);
         });
 
         const PolygonCoordinates = [
-            { lat: 41.076722692123184,  lng: 23.555985689163208 },
-            { lat: 41.076783350015965,  lng: 23.552879691123966 },
-            { lat: 41.07601501257157, lng: 23.550154566764835 },
-            { lat: 41.075460995262915, lng: 23.54954838752747 },
-            {lat:41.074522794719456,lng:23.551082611083988},
-            { lat:41.07396472080365  , lng:23.551082611083988},
-            { lat:41.074001117073024  , lng:23.556511402130127},
-            { lat:41.076722692123184  , lng:23.555985689163208},
+            {lat: 41.076722692123184, lng: 23.555985689163208},
+            {lat: 41.076783350015965, lng: 23.552879691123966},
+            {lat: 41.07601501257157, lng: 23.550154566764835},
+            {lat: 41.075460995262915, lng: 23.54954838752747},
+            {lat: 41.074522794719456, lng: 23.551082611083988},
+            {lat: 41.07396472080365, lng: 23.551082611083988},
+            {lat: 41.074001117073024, lng: 23.556511402130127},
+            {lat: 41.076722692123184, lng: 23.555985689163208},
         ];
         const PolyPath = new google.maps.Polyline({
             path: PolygonCoordinates,
@@ -192,9 +194,11 @@
         });
         PolyPath.setMap(map);
     }
+
     var marker;
-    function placeMarker(location,map) {
-        if ( marker ) {
+
+    function placeMarker(location, map) {
+        if (marker) {
             marker.setPosition(location);
         } else {
             marker = new google.maps.Marker({
@@ -212,9 +216,10 @@
 <br>
 <br>
 <div class="controls">
-    <button  style="margin-left: 500px" form="frm" type="submit"  class="btn btn-outline-primary"  >Add Marker</button>
-    <button  form="frm"  type="reset" class="btn btn-outline-primary"   >Clear fields</button>
-    <button onClick="location.href=location.href" type="button"  class="btn btn-outline-primary"  >Insert Another One</button>
+    <button style="margin-left: 500px" form="frm" type="submit" class="btn btn-outline-primary">Add Marker</button>
+    <button form="frm" type="reset" class="btn btn-outline-primary">Clear fields</button>
+    <button onClick="location.href=location.href" type="button" class="btn btn-outline-primary">Insert Another One
+    </button>
 </div>
 </body>
 </head>

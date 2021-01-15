@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
+    <div th:replace="fragments/style :: style"></div>
     <script th:replace="fragments/header :: sameElement"></script>
     <script th:replace="fragments/header :: sameElement1"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +23,7 @@
     <input type="text" th:field="*{points}" id="points" placeholder="points">
     <span th:if="${#fields.hasErrors('points')}" th:errors="*{points}"></span>
     <input type="submit" value="Save Changes">
-    <button th:href="@{/allPuzzles}" type="btn" >Cancel</button>
+    <button th:href="@{/allPuzzles}" type="btn">Cancel</button>
 </form>
 </body>
 </html>

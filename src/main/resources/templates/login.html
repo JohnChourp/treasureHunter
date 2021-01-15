@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -18,11 +18,11 @@
         <div ng-app ng-init="checked = false">
             <form class="form-signin" th:action="@{/login}" method="post" name="form">
                 <label for="username">Username</label>
-                <input class="form-styling" id="username" type="text" name="username" placeholder="Username..." />
+                <input class="form-styling" id="username" type="text" name="username" placeholder="Username..."/>
                 <label for="password">Password</label>
-                <input class="form-styling" type="text" id="password" name="password" placeholder="Password..." />
-                <input type="checkbox" id="checkbox" /> <label for="checkbox"><span class="ui"></span>Remember me</label>
-                <input type="submit" class="btn btn-lg btn-outline-primary btn-block"  value="Sign in " />
+                <input class="form-styling" type="text" id="password" name="password" placeholder="Password..."/>
+                <input type="checkbox" id="checkbox"/> <label for="checkbox"><span class="ui"></span>Remember me</label>
+                <input type="submit" class="btn btn-lg btn-outline-primary btn-block" value="Sign in "/>
 
             </form>
         </div>

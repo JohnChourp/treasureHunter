@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
+
     <script th:replace="fragments/header :: sameElement"></script>
     <script th:replace="fragments/header :: sameElement1"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,36 +20,40 @@
     </script>
 </head>
 <body>
-
 <div th:replace="fragments/navbar :: nav"></div>
+<div th:replace="fragments/style :: style"></div>
+<div class="container">
+    <div class="nav">
+        <div class="table-responsive table-responsive-sm">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col"> Id</th>
+                    <th scope="col"> Question</th>
+                    <th scope="col"> Answer</th>
+                    <th scope="col"> Points</th>
 
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th scope="col"> Id</th>
-        <th scope="col"> Question</th>
-        <th scope="col"> Answer</th>
-        <th scope="col"> Points</th>
-
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${puzzles.empty}">
-        <td colspan="2"> No Puzzles Available</td>
-    </tr>
-    <tr scope="row" th:each="puzzle : ${puzzles}">
-        <td><span th:text="${puzzle.id}"> Id </span></td>
-        <td><span th:text="${puzzle.question}"> Question </span></td>
-        <td><span th:text="${puzzle.answer}"> Answer </span></td>
-        <td><span th:text="${puzzle.points}"> Points </span></td>
-        <td><a th:href="@{/editPuzzle/{id}(id=${puzzle.id})}">Edit</a></td>
-        <td><a th:href="@{/deletePuzzle/{id}(id=${puzzle.id})}" class="btn btn-danger" id="deleteButton"><i
-                class="fas fa-user-times ml-2"></i><span>Delete</span></a></td>
-    </tr>
-    </tbody>
-</table>
-
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${puzzles.empty}">
+                    <td colspan="2"> No Puzzles Available</td>
+                </tr>
+                <tr scope="row" th:each="puzzle : ${puzzles}">
+                    <td><span th:text="${puzzle.id}"> Id </span></td>
+                    <td><span th:text="${puzzle.question}"> Question </span></td>
+                    <td><span th:text="${puzzle.answer}"> Answer </span></td>
+                    <td><span th:text="${puzzle.points}"> Points </span></td>
+                    <td><a th:href="@{/editPuzzle/{id}(id=${puzzle.id})}">Edit</a></td>
+                    <td><a th:href="@{/deletePuzzle/{id}(id=${puzzle.id})}" class="btn btn-danger" id="deleteButton"><i
+                            class="fas fa-user-times ml-2"></i><span>Delete</span></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
 <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
