@@ -1,6 +1,7 @@
 package org.codegrinders.treasure_hunter.controller;
 
 import org.codegrinders.treasure_hunter.model.User;
+import org.codegrinders.treasure_hunter.service.PlayerService;
 import org.codegrinders.treasure_hunter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PlayerService playerService;
 
     @GetMapping(value = "/")
     public List<User> getAllUsers() {
@@ -31,6 +35,21 @@ public class UserController {
     public Optional<User> getUser(@PathVariable String id) {
         return userService.findById(id);
     }
+
+
+    @PostMapping(value = "/logged")
+    public User getLoggedUser(@RequestBody User user){
+        playerService.addPlayer(user);
+
+        return user;
+    }
+
+    @GetMapping(value = "/online")
+    public List<User> onlinePlayers(){
+        return playerService.getPlayers();
+    }
+
+
 
     @GetMapping(value = "/login")
     public User loginUser(@RequestParam("username") String username, @RequestParam("password") String password) {
