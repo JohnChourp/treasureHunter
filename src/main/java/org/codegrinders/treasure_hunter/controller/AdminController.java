@@ -83,6 +83,14 @@ public class AdminController {
         model.addAttribute("users", userService.findAll());
         return "allUsers";
     }
+    @GetMapping("/deleteMarker/{id}")
+    public String deleteMarker(@PathVariable("id") String id, Model model) {
+        Marker marker = markerService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid marker Id:" + id));
+        markerService.deleteMarker(marker.getId());
+        model.addAttribute("markers", markerService.findAll());
+        return "allMarkers";
+    }
 
     @GetMapping("/addMarker")
     public String welcome1(Marker marker, Model model) {
