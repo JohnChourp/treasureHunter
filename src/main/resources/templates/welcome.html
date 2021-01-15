@@ -9,8 +9,17 @@
 </head>
 <body>
 <div th:replace="fragments/navbar :: nav"></div>
-<div style="padding-left:0px">
-    <p>Welcome Admin</p>
+<div th:replace="fragments/style :: style"></div>
+<div class="container">
+    <div class="frame">
+        <div class="nav">
+            <form class="form-signin">
+                <div align="center" class="form-styling">
+                    <p>Welcome Admin</p>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 </body>
 

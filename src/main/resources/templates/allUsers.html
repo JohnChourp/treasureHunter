@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
+    <div th:replace="fragments/style :: style"></div>
     <script th:replace="fragments/header :: sameElement"></script>
     <script th:replace="fragments/header :: sameElement1"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
 
 
     <script>
@@ -21,37 +21,43 @@
 
 </head>
 <body>
-
 <div th:replace="fragments/navbar :: nav"></div>
+<div th:replace="fragments/style :: style"></div>
+<div class="container">
+    <div class="nav">
+        <div class="table-responsive table-responsive-sm">
 
 
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th scope="col"> Id</th>
-        <th scope="col"> Username</th>
-        <th scope="col"> Points</th>
-        <th scope="col"> Email</th>
-        <th scope="col"> Date Created</th>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col"> Id</th>
+                    <th scope="col"> Username</th>
+                    <th scope="col"> Points</th>
+                    <th scope="col"> Email</th>
+                    <th scope="col"> Date Created</th>
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${users.empty}">
-        <td colspan="2"> No Users Available</td>
-    </tr>
-    <tr scope="row" th:each="user : ${users}">
-        <td><span th:text="${user.id}"> Id </span></td>
-        <td><span th:text="${user.username}"> Username </span></td>
-        <td><span th:text="${user.points}"> Points </span></td>
-        <td><span th:text="${user.email}"> Email </span></td>
-        <td><span th:text="${user.dateCreated}"> Date Created </span></td>
-        <td><a th:href="@{/editUser/{id}(id=${user.id})}">Edit</a></td>
-        <td><a th:href="@{/deleteUser/{id}(id=${user.id})}" class="btn btn-danger" id="deleteButton"><i
-                class="fas fa-user-times ml-2"></i><span>Delete</span></a></td>
-    </tr>
-    </tbody>
-</table>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${users.empty}">
+                    <td colspan="2"> No Users Available</td>
+                </tr>
+                <tr scope="row" th:each="user : ${users}">
+                    <td><span th:text="${user.id}"> Id </span></td>
+                    <td><span th:text="${user.username}"> Username </span></td>
+                    <td><span th:text="${user.points}"> Points </span></td>
+                    <td><span th:text="${user.email}"> Email </span></td>
+                    <td><span th:text="${user.dateCreated}"> Date Created </span></td>
+                    <td><a th:href="@{/editUser/{id}(id=${user.id})}">Edit</a></td>
+                    <td><a th:href="@{/deleteUser/{id}(id=${user.id})}" class="btn btn-danger" id="deleteButton"><i
+                            class="fas fa-user-times ml-2"></i><span>Delete</span></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 
 <div class="modal" tabindex="-1" role="dialog" id="deleteModal">

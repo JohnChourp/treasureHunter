@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
+
     <script th:replace="fragments/header :: sameElement"></script>
     <script th:replace="fragments/header :: sameElement1"></script>
     <script th:replace="fragments/header :: add"></script>
@@ -15,7 +16,7 @@
 <body>
 
 <div th:replace="fragments/navbar :: nav"></div>
-
+<div th:replace="fragments/style :: style"></div>
 <form id="frm" class="frm"  th:action="@{/addMarker}"  th:object="${marker}" method="post">
     <input class="input-group input-group-sm mb-3" type="text" placeholder="Add New Marker" aria-label="Disabled input example" disabled>
 
