@@ -7,13 +7,17 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import org.codegrinders.treasure_hunter.TreasureHunterApplication;
 import org.codegrinders.treasure_hunter.model.User;
 import org.codegrinders.treasure_hunter.repository.UserRepository;
+import org.codegrinders.treasure_hunter.service.PlayerService;
 import org.codegrinders.treasure_hunter.service.UserService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -24,6 +28,13 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.List;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 @ExtendWith(SpringExtension.class)
 @RunWith(SpringRunner.class)
@@ -34,11 +45,14 @@ public class UserControllerTest {
     @Autowired
     WebApplicationContext webApplicationContext;
 
-    @Autowired
+    @Mock
     UserRepository userRepository;
 
-    @Autowired
+    @Mock
     UserService userService;
+
+    @Mock
+    PlayerService playerService;
 
     private MockMvc mvc;
 
@@ -57,7 +71,7 @@ public class UserControllerTest {
     public void whenGetUserListThenReturnTrueIfNotNull() throws Exception {
         mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         String uri = "/user/";
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
+        MvcResult mvcResult = mvc.perform(get(uri)
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
         String content = mvcResult.getResponse().getContentAsString();
         User[] userList = mapFromJson(content, User[].class);
@@ -92,7 +106,7 @@ public class UserControllerTest {
     public void givenUsersIdWhenFoundThenReturnUsername() throws Exception{
         mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         String uri = "/user/3";
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
+        MvcResult mvcResult = mvc.perform(get(uri)).andReturn();
         String content = mvcResult.getResponse().getContentAsString();
         User user = mapFromJson(content, User.class);
         Assert.assertEquals("takis",user.getUsername());
@@ -118,6 +132,55 @@ public class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andExpect(status().isBadRequest());
 
     }
+
+    @Test
+    public void tryToLogin() throws Exception{
+        String uri = "/user/login";
+        mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+
+        MvcResult mvcResult = mvc.perform(get(uri).param("username","pakis").param("password","111")).andReturn();
+        String content = mvcResult.getResponse().getContentAsString();
+        User user = mapFromJson(content, User.class);
+        Assert.assertEquals("pakis",user.getUsername());
+    }
+
+    @Test
+    public void tryToLoginNoExistingUser() throws Exception{
+        String uri = "/user/login";
+        mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+
+        MvcResult mvcResult = mvc.perform(get(uri).param("username","test").param("password","111")).andReturn();
+        String content = mvcResult.getResponse().getContentAsString();
+        User user = mapFromJson(content, User.class);
+        Assert.assertNull(user.getUsername());
+    }
+
+    @Test
+    public void whenLoginPostUser() throws Exception {
+        User user = new User( "1","pakis",55);
+        String uri = "/user/logged";
+        mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        String inputJson = mapToJson(user);
+        mvc.perform(MockMvcRequestBuilders.post(uri)
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andExpect(status().isOk());
+    }
+
+    @Test
+    public void tryToGetOnlinePlayersWithNoneLoggedPlayer() throws Exception{
+        String uri = "/user/online";
+        User user = new User("1","pakis",55);
+
+
+        mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+
+        MvcResult mvcResult = mvc.perform(get(uri)
+                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+        String content = mvcResult.getResponse().getContentAsString();
+        User[] userList = mapFromJson(content, User[].class);
+        Assert.assertTrue(userList.length > 0);
+    }
+
+
 
 
 }
