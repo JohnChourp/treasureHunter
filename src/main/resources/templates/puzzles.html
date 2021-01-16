@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <div th:replace="fragments/style :: style"></div>
     <script th:replace="fragments/header :: sameElement"></script>
     <script th:replace="fragments/header :: sameElement1"></script>
     <meta charset="UTF-8">
@@ -15,33 +14,26 @@
 
 <body>
 <div th:replace="fragments/navbar :: nav"></div>
-<div class="container">
-    <div class="frame">
-        <div class="nav">
-            <form class="form-signin" action="#" th:action="@{/save}" th:object="${puzzle}" method="post">
-                <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="question">Question</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-sm" name="question" th:field="*{question}"/>
-                </div>
-                <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="answer">Answer</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-sm" name="answer" th:field="*{answer}"/>
-                </div>
-                <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="points">Points</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                           aria-describedby="inputGroup-sizing-sm" name="points" th:field="*{points}"/>
-                </div>
-                <button type="submit" class="btn btn-outline-primary">Add Puzzle</button>
-                <button type="reset" class="btn btn-outline-primary">Clear fields</button>
-                <button onClick="location.href=location.href" type="button" class="btn btn-outline-primary">Insert
-                    Another One
-                </button>
-            </form>
-        </div>
+
+<form class="frm" action="#" th:action="@{/save}" th:object="${puzzle}" method="post">
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text"  id="question">Question</span>
+        <input type="text" class="form-control" aria-label="Sizing example input"
+               aria-describedby="inputGroup-sizing-sm" name="question" th:field="*{question}"/>
     </div>
-</div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="answer">Answer</span>
+        <input type="text" class="form-control" aria-label="Sizing example input"
+               aria-describedby="inputGroup-sizing-sm" name="answer" th:field="*{answer}"/>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="points">Points</span>
+        <input type="text" class="form-control" aria-label="Sizing example input"
+               aria-describedby="inputGroup-sizing-sm" name="points" th:field="*{points}"/>
+    </div>
+    <button   type="submit"  class="btn btn-outline-primary"  >Add Puzzle</button>
+    <button   type="reset" class="btn btn-outline-primary"   >Clear fields</button>
+    <button onClick="location.href=location.href" type="button"  class="btn btn-outline-primary"  >Insert Another One</button>
+</form>
 </body>
 </html>
