@@ -26,11 +26,14 @@
         <input type="text" class="form-control" aria-label="Sizing example input"
                aria-describedby="inputGroup-sizing-sm" name="title" th:field="*{title}"/>
     </div>
-    <div class="input-group input-group-sm mb-3 ">
-        <span class="input-group-text" id="snippet">Snippet</span>
-        <input type="text" class="form-control" aria-label="Sizing example input"
-               aria-describedby="inputGroup-sizing-sm" name="snippet" th:field="*{snippet}"/>
-    </div>
+
+    <input class="form-control" type="text" placeholder="Snippet" aria-label="Disabled input example" disabled>
+    <select class="form-select form-select-sm" th:field="*{snippet}">
+        <option th:value="easy">easy</option>
+        <option th:value="medium">medium</option>
+        <option th:value="hard">hard</option>
+    </select>
+    <br>
     <div class="input-group input-group-sm mb-3 ">
         <span class="input-group-text" id="puzzleId">Puzzle Id</span>
         <input type="text" class="form-control" aria-label="Sizing example input"
