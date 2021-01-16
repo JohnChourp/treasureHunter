@@ -21,7 +21,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willThrow;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 @ExtendWith(MockitoExtension.class)
@@ -124,6 +124,12 @@ public class UserServiceTest {
         boolean result = userService.loginApproval("elena",password);
         assertTrue(result);
 
+    }
+
+    @Test
+    public void tryToDeleteUser(){
+        userService.deleteUser(user.getId());
+        verify(userRepository,times(1)).deleteById(user.getId());
     }
 
 }

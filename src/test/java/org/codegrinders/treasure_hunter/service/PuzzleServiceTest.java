@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 @ExtendWith(MockitoExtension.class)
@@ -52,4 +54,18 @@ public class PuzzleServiceTest {
         List <Puzzle> expected =puzzleService.findAll();
         assertEquals("1",puzzles.get(0).getId());
     }
-}
+
+    @Test
+    public void tryToDeletePuzzle(){
+        List<Puzzle> puzzles=new ArrayList<>();
+        puzzles.add( new Puzzle("1","what is life?","unknown",1));
+        puzzles.add( new Puzzle("2","what is live?","unknown2",2));
+
+        puzzleService.deletePuzzle("1");
+
+        verify(puzzleRepository,times(1)).deleteById("1");
+
+    }
+
+
+  }

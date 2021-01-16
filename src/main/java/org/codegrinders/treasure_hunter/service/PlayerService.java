@@ -15,12 +15,9 @@ public class PlayerService {
     }
 
 
-    public void setPlayers(List<User> listPlayers) {
-        players = listPlayers;
-    }
 
     public void addPlayer(User user){
-        players.add(user);
+            players.add(user);
     }
 
 
