@@ -38,4 +38,7 @@ public class MarkerService {
     public void deleteMarker(String id) {
         markerRepository.deleteById(id);
     }
+    public Marker updateMarker(Marker marker) {
+        return markerRepository.save(marker);
+    }
 }
