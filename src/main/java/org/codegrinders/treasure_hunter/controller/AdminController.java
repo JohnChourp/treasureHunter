@@ -154,4 +154,15 @@ public class AdminController {
         model.addAttribute("marker", marker);
         return "updateMarker";
     }
+    @PostMapping("/updateMarker/{id}")
+    public String updateMarker(@PathVariable("id") String id, Marker marker, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            marker.setId(id);
+            return "updateMarker";
+        }
+
+        markerService.updateMarker(marker);
+        model.addAttribute("markers", markerService.findAll());
+        return "redirect:/allMarkers";
+    }
 }
