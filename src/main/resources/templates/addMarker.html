@@ -3,7 +3,6 @@
 <head>
     <script th:replace="fragments/header :: sameElement"></script>
     <script th:replace="fragments/header :: sameElement1"></script>
-<!--    <script th:replace="fragments/header :: add"></script>-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add Marker</title>
@@ -15,13 +14,7 @@
     <script type="text/javascript">
         $(function() {
             $("#thePuzzleId").autocomplete({
-                source: "autocomplete",
-                // minLength: 2
-                // select: function(event, ui) {
-                //     this.value = ui.item.label;
-                //     $("#Plant_ID").val(ui.item.value);
-                //     return false;
-                // }
+                source: "autocomplete"
             });
 
         });
