@@ -1,6 +1,7 @@
 package org.codegrinders.treasure_hunter.service;
 
 import org.codegrinders.treasure_hunter.model.Puzzle;
+import org.codegrinders.treasure_hunter.model.User;
 import org.codegrinders.treasure_hunter.repository.PuzzleRepository;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,15 +12,16 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.Silent.class)
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
 public class PuzzleServiceTest {
@@ -67,5 +69,56 @@ public class PuzzleServiceTest {
 
     }
 
+    @Test
+    public void UpdatePuzzleTest(){
 
-  }
+        Puzzle puzzle= new Puzzle("1","what is life?","unknown",1);
+        when(puzzleRepository.save(puzzle)).thenReturn(puzzle);
+        Puzzle puzzleExp= puzzleService.updatePuzzle(puzzle);
+        assertEquals(puzzleExp,puzzle);
+    }
+
+    @Test
+    public void AddPuzzleTest(){
+
+        Puzzle puzzle= new Puzzle("1","what is life?","unknown",1);
+        when(puzzleRepository.insert(puzzle)).thenReturn(puzzle);
+        Puzzle puzzleExp= puzzleService.addPuzzle(puzzle);
+        assertEquals(puzzleExp,puzzle);
+    }
+
+    @Test
+    public void findByQuestionTest(){
+        List<Puzzle> puzzles=new ArrayList<>();
+        puzzles.add( new Puzzle("1","what is life?","unknown",1));
+        puzzles.add( new Puzzle("what is life?","unknown2",2));
+        given(puzzleRepository.findByQuestion("what is life?")).willReturn(puzzles);
+        List <Puzzle> exp =puzzleService.findByQuestion("what is life?");
+        assertEquals(exp,puzzles);
+    }
+    @Test
+    public void GetPuzzleByQuestionTest(){
+        List<Puzzle> puzzles=new ArrayList<>();
+        puzzles.add( new Puzzle("1","what is life?","unknown",1));
+        given(puzzleRepository.getPuzzleByQuestion("what is life?")).willReturn(puzzles);
+        List <Puzzle> exp =puzzleService.getPuzzleByQuestion("what is life?");
+        assertEquals(exp,puzzles);
+    }
+    @Test
+    public void puzzleIsCorrectTest(){
+        Puzzle puzzle= new Puzzle("1","what is life?","unknown",1);
+        when(puzzleRepository.existsById("1")).thenReturn(false);
+        boolean exp= puzzleService.puzzleIsCorrect("2","haha");
+        assertFalse(exp);
+    }
+
+    @Test
+    public void FindPuzzleByIdTest(){
+
+        Puzzle puzzle= new Puzzle("1","what is life?","unknown",1);
+        when(puzzleRepository.findById("1")).thenReturn(Optional.of(puzzle));
+        Optional <Puzzle> puzzleExp= puzzleService.findById("1");
+        assertEquals(puzzleExp,Optional.of(puzzle));
+    }
+
+}

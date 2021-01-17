@@ -17,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
@@ -131,5 +132,40 @@ public class UserServiceTest {
         userService.deleteUser(user.getId());
         verify(userRepository,times(1)).deleteById(user.getId());
     }
+
+    @Test
+    public void whenUserExistsGetHisUsername(){
+        User user = new User("2", "pakis@pakis.gr", "sdf", "sdf", 0, LocalDateTime.now(),false);
+        when(userRepository.findUserByUsername("sdf")).thenReturn(user);
+        User exp= userService.getUserByUsername("sdf");
+        assertEquals(user,exp);
+    }
+
+    @Test
+    public void whenUserNotExistsGetNothing(){
+        User user = new User("2", "pakis@pakis.gr", "sdf", "sdf", 0, LocalDateTime.now(),false);
+        when(userRepository.findUserByUsername("sdffff")).thenReturn(null);
+        User exp= userService.getUserByUsername("sdffff");
+        assertNull(exp);
+    }
+
+    @Test
+    public void FindUserByIdTest(){
+
+        User user = new User("2", "pakis@pakis.gr", "sdf", "sdf", 0, LocalDateTime.now(),false);
+        when(userRepository.findById("2")).thenReturn(Optional.of(user));
+        Optional <User> userExp= userService.findById("2");
+        assertEquals(userExp,Optional.of(user));
+    }
+
+    @Test
+    public void UpdateUserTest(){
+
+        User user = new User("2", "pakis@pakis.gr", "sdf", "sdf", 0, LocalDateTime.now(),false);
+        when(userRepository.save(user)).thenReturn(user);
+        User userExp= userService.updateUser(user);
+        assertEquals(userExp,user);
+    }
+
 
 }
