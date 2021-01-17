@@ -3,7 +3,7 @@
 <head>
     <script th:replace="fragments/header :: sameElement"></script>
     <script th:replace="fragments/header :: sameElement1"></script>
-    <script th:replace="fragments/header :: add"></script>
+<!--    <script th:replace="fragments/header :: add"></script>-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add Marker</title>
@@ -11,7 +11,21 @@
 
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script th:replace="fragments/autocomplete :: auto"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#thePuzzleId").autocomplete({
+                source: "autocomplete",
+                // minLength: 2
+                // select: function(event, ui) {
+                //     this.value = ui.item.label;
+                //     $("#Plant_ID").val(ui.item.value);
+                //     return false;
+                // }
+            });
 
+        });
+    </script>
 <body>
 
 <div th:replace="fragments/navbar :: nav"></div>
@@ -31,7 +45,7 @@
     </div>
     <div class="input-group input-group-sm mb-3 ">
         <span class="input-group-text"   id="puzzleId">Puzzle Id</span>
-        <input type="text" class="form-control"  aria-label="Sizing example input"
+        <input  id="thePuzzleId" type="text" class="form-control"  aria-label="Sizing example input"
                aria-describedby="inputGroup-sizing-sm" name="puzzleId" th:field="*{puzzleId}"/>
     </div>
 

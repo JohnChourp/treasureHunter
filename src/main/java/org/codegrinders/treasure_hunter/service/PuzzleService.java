@@ -46,4 +46,10 @@ public class PuzzleService {
         }
         return false;
     }
+    public  List<Puzzle> getPuzzleByQuestion(String id){
+        return  puzzleRepository.getPuzzleByQuestion(id);
+    }
+
+    public  List<Puzzle> findByQuestion(String question){return puzzleRepository.findByQuestion(question);}
+
 }

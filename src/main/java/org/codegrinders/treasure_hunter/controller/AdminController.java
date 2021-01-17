@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class AdminController {
@@ -164,5 +164,28 @@ public class AdminController {
         markerService.updateMarker(marker);
         model.addAttribute("markers", markerService.findAll());
         return "redirect:/allMarkers";
+    }
+    @GetMapping("/search")
+    public String search(@RequestParam(value = "searchTerm" ,required = false,defaultValue ="none") String searchTerm, Model model){
+        User userList=userService.getUserByUsername(searchTerm);
+        List< Puzzle> puzzleList=puzzleService.getPuzzleByQuestion(searchTerm);
+        List<Marker> markerList=markerService.getMarkerByTitle(searchTerm);
+        model.addAttribute("puzzles",puzzleList);
+        model.addAttribute("users",userList);
+        model.addAttribute("markers",markerList);
+        return "search";
+    }
+    @GetMapping("/autocomplete")
+    @ResponseBody
+    public List<String> autocomplete (@RequestParam(value="term", required = false, defaultValue="") String term){
+
+        List<Puzzle>puzzles=puzzleService.findByQuestion(term);
+        List<String> all =new ArrayList<String>();
+        for (Puzzle puzzle:puzzles)
+        {
+            all.add(puzzle.getId());
+        }
+        return all;
+
     }
 }

@@ -42,4 +42,8 @@ public class MarkerService {
     public Marker updateMarker(Marker marker) {
         return markerRepository.save(marker);
     }
+
+    public List <Marker>  getMarkerByTitle(String title){
+        return markerRepository.getMarkerByTitle(title);
+    }
 }
