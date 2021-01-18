@@ -2,7 +2,7 @@ image: jangrewe/gitlab-ci-android
 
 variables:
   PROJECT_NAME: treasure_hunter
-  PROJECT_VERSION: 0.0.3
+  PROJECT_VERSION: 0.1.0
 
 before_script:
   - git remote set-url origin https://$GIT_USER:$GIT_ACCESS@gitlab.com/$CI_PROJECT_PATH.git
@@ -37,7 +37,7 @@ assembleRelease:
     - git push origin $PROJECT_NAME-$PROJECT_VERSION-$CI_PIPELINE_ID
     - |
       curl --fail --output "/dev/null" --silent --show-error --write-out "HTTP response: ${http_code}\n\n" \
-        --data "{\"tag_name\": \"${PROJECT_NAME}-${PROJECT_VERSION}-${CI_PIPELINE_ID}\", \"name\": \"${PROJECT_NAME}-${PROJECT_VERSION}-${CI_PIPELINE_ID}\",  \"assets\": { \"links\": [{ \"name\": \"release\", \"url\": \"https://gitlab.com/aneziou/treasure_hunter/-/jobs/${CI_JOB_ID}/artifacts/download\" }] }, \"description\": \"No release notes.\"}" \
+        --data "{\"tag_name\": \"${PROJECT_NAME}-${PROJECT_VERSION}-${CI_PIPELINE_ID}\", \"name\": \"${PROJECT_NAME}-${PROJECT_VERSION}-${CI_PIPELINE_ID}\",  \"assets\": { \"links\": [{ \"name\": \"release\", \"url\": \"https://gitlab.com/aneziou/treasure_hunter/-/jobs/${CI_JOB_ID}/artifacts/download\" }] }, \"description\": \"This is a closed beta version.\"}" \
         --header "Content-Type: application/json" \
         --header "Private-Token: ${GIT_ACCESSS}" \
         --request POST \
