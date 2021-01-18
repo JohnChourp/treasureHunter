@@ -28,7 +28,7 @@ maven-build:
 assembleRelease:
   stage: release
   only:
-    - testCI
+    - master
   script:
     - git log --pretty=format:"%cd %s" > changelog.txt
     - git tag -a $PROJECT_NAME-$PROJECT_VERSION-$CI_PIPELINE_ID -F changelog.txt
