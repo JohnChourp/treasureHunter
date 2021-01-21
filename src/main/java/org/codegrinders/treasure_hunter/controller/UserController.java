@@ -36,7 +36,6 @@ public class UserController {
         return userService.findById(id);
     }
 
-
 //    @PostMapping(value = "/logged")
 //    public User getLoggedUser(@RequestBody User user){
 //        playerService.addPlayer(user);
@@ -48,8 +47,6 @@ public class UserController {
 //    public List<User> onlinePlayers(){
 //        return playerService.getPlayers();
 //    }
-
-
 
     @GetMapping(value = "/login")
     public User loginUser(@RequestParam("username") String username, @RequestParam("password") String password) {
