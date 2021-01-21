@@ -37,17 +37,17 @@ public class UserController {
     }
 
 
-    @PostMapping(value = "/logged")
-    public User getLoggedUser(@RequestBody User user){
-        playerService.addPlayer(user);
+//    @PostMapping(value = "/logged")
+//    public User getLoggedUser(@RequestBody User user){
+//        playerService.addPlayer(user);
+//
+//        return user;
+//    }
 
-        return user;
-    }
-
-    @GetMapping(value = "/online")
-    public List<User> onlinePlayers(){
-        return playerService.getPlayers();
-    }
+//    @GetMapping(value = "/online")
+//    public List<User> onlinePlayers(){
+//        return playerService.getPlayers();
+//    }
 
 
 
